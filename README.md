@@ -58,3 +58,6 @@ Required: nodejs & pnpm
 ├── next.config.ts             # Konfigurasi Next.js & Nextra
 └── package.json
 ```
+
+## 📄 License
+Proyek ini dilisensikan di bawah [MIT License](https://opensource.org/license/mit).
