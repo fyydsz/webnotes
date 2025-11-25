@@ -30,7 +30,7 @@ const navbar = (
         </svg>
       </div>
     }
-    projectLink={'https://github.com/fyydsz/webnotes'}
+    projectLink={'https://github.com/fyydsz/webnotes/tree/master'}
 
   // ... Your additional navbar options
   >
