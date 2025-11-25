@@ -2,7 +2,7 @@
 
 **Fyy's Notebook** adalah situs dokumentasi pribadi ("Digital Garden") yang dibangun untuk menyimpan catatan belajar, materi kuliah, dan dokumentasi teknis. Proyek ini dirancang dengan fokus pada kecepatan, kemudahan penulisan konten (MDX), dan tampilan yang modern.
 
-![Project Banner](public/file.svg)
+![Project Banner](public/image.png)
 
 ## 🚀 Teknologi Utama
 
