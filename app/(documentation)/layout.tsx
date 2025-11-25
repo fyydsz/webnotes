@@ -61,7 +61,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           banner={<Banner storageKey="nextra-banner" dismissible={true}>Documentation is on progress 📚</Banner>}
           navbar={navbar}
           pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/fyydsz/webnotes"
+          docsRepositoryBase="https://github.com/fyydsz/webnotes/tree/master"
           footer={footer}
           copyPageButton={false}
           darkMode={false}
