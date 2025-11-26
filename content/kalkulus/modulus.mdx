@@ -1,0 +1,119 @@
+---
+title: Modulus (Nilai Mutlak)
+description: Konsep jarak, rumus modulus, dan penyelesaian soal bilangan kompleks
+---
+
+import { Callout } from 'nextra/components'
+import { Latex } from '../../components/latex'
+
+# 📏 Modulus (Nilai Mutlak)
+
+Berdasarkan catatan kuliah, **Modulus** adalah metode untuk menghitung "jarak" suatu bilangan dari titik pusat (0).
+
+## 💡 Konsep Dasar
+
+### Definisi Geometris
+Pada bilangan real, modulus hanyalah mengubah bilangan negatif menjadi positif (jarak linier).
+Namun, pada **Bilangan Kompleks** <Latex>{`z = x + yi`}</Latex>, modulus merepresentasikan sisi miring (hipotenusa) dari segitiga siku-siku pada bidang kompleks.
+
+### Rumus Umum
+Karena merepresentasikan jarak, kita menggunakan **Teorema Pythagoras**:
+
+<Latex block>{`|z| = \\sqrt{Re^2 + Im^2}`}</Latex>
+
+## 🧮 Contoh Soal & Pembahasan
+
+Berikut adalah variasi soal dari tingkat dasar hingga lanjut berdasarkan catatan.
+
+### Kasus 1: Bilangan Kompleks Standar
+**Soal:**
+Tentukan modulus dari <Latex>{`z = 3 - 4i`}</Latex>!
+
+**Penyelesaian:**
+Diketahui <Latex>{`Re = 3`}</Latex> dan <Latex>{`Im = -4`}</Latex>.
+
+<Latex block>{`
+  \\begin{aligned}
+  |z| &= \\sqrt{3^2 + (-4)^2} \\\\
+  &= \\sqrt{9 + 16} \\\\
+  &= \\sqrt{25} = 5
+  \\end{aligned}
+`}</Latex>
+
+### Kasus 2: Operasi Pembagian (Tingkat Lanjut)
+**Soal:**
+Hitunglah modulus dari persamaan berikut:
+
+<Latex block>{`\\left| \\frac{3+7i}{2-10i} \\right|`}</Latex>
+
+**Strategi Penyelesaian:**
+1.  **Sederhanakan** pembagian menggunakan *konjugat*.
+2.  **Hitung** modulus dari hasil penyederhanaan.
+
+**Langkah 1: Kalikan dengan Sekawan**
+<Latex block>{`
+  \\begin{aligned}
+  \\frac{3+7i}{2-10i} \\cdot \\frac{2+10i}{2+10i} &= \\frac{6 + 30i + 14i + 70i^2}{2^2 + 10^2} \\\\
+  &= \\frac{6 + 44i - 70}{4 + 100} \\\\
+  &= \\frac{-64 + 44i}{104}
+  \\end{aligned}
+`}</Latex>
+
+Pecahkan menjadi bagian Real dan Imajiner:
+* <Latex>{`Re = \\frac{-64}{104} = -\\frac{8}{13}`}</Latex>
+* <Latex>{`Im = \\frac{44}{104} = \\frac{11}{26}`}</Latex>
+
+**Langkah 2: Masukkan ke Rumus Modulus**
+<Latex block>{`
+  \\begin{aligned}
+  |z| &= \\sqrt{\\left(-\\frac{8}{13}\\right)^2 + \\left(\\frac{11}{26}\\right)^2} \\\\
+  &= \\sqrt{\\frac{64}{169} + \\frac{121}{676}} \\\\
+  &= \\sqrt{\\frac{256}{676} + \\frac{121}{676}} \\quad \\text{(Samakan penyebut)} \\\\
+  &= \\sqrt{\\frac{377}{676}} \\\\
+  &= \\frac{\\sqrt{377}}{26}
+  \\end{aligned}
+`}</Latex>
+
+### Kasus 3: Pembuktian Sifat Modulus (Perkalian)
+Buktikan bahwa modulus dari hasil kali dua bilangan kompleks sama dengan hasil kali masing-masing modulusnya:
+
+<Latex block>{`|z_1 \\cdot z_2| = |z_1| \\cdot |z_2|`}</Latex>
+
+**Diketahui:**
+* <Latex>{`z_1 = 2 - 8i`}</Latex>
+* <Latex>{`z_2 = 8 - 2i`}</Latex>
+
+**Langkah 1: Hitung Ruas Kiri (<Latex>{`|z_1 \\cdot z_2|`}</Latex>)**
+Kita kalikan dulu kedua bilangan tersebut:
+<Latex block>{`
+  \\begin{aligned}
+  z_1 \\cdot z_2 &= (2 - 8i)(8 - 2i) \\\\
+  &= 16 - 4i - 64i + 16i^2 \\\\
+  &= 16 - 68i + 16(-1) \\\\
+  &= 16 - 16 - 68i \\\\
+  &= 0 - 68i
+  \\end{aligned}
+`}</Latex>
+
+Maka modulusnya:
+<Latex block>{`
+  |z_1 \\cdot z_2| = \\sqrt{0^2 + (-68)^2} = \\sqrt{4624} = \\mathbf{68}
+`}</Latex>
+
+**Langkah 2: Hitung Ruas Kanan (<Latex>{`|z_1| \\cdot |z_2|`}</Latex>)**
+Kita hitung modulus masing-masing:
+<Latex block>{`
+  \\begin{aligned}
+  |z_1| &= \\sqrt{2^2 + (-8)^2} = \\sqrt{4 + 64} = \\sqrt{68} \\\\
+  |z_2| &= \\sqrt{8^2 + (-2)^2} = \\sqrt{64 + 4} = \\sqrt{68}
+  \\end{aligned}
+`}</Latex>
+
+Kalikan kedua hasil tersebut:
+<Latex block>{`
+  |z_1| \\cdot |z_2| = \\sqrt{68} \\cdot \\sqrt{68} = \\mathbf{68}
+`}</Latex>
+
+<Callout type="info" emoji="✅">
+  **Terbukti!** Hasil ruas kiri sama dengan ruas kanan (<Latex>{`68 = 68`}</Latex>).
+</Callout>
