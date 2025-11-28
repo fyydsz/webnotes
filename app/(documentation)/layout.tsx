@@ -7,6 +7,7 @@ import { getPageMap } from 'nextra/page-map'
 import './globals.css'
 import 'katex/dist/katex.min.css'
 import { LastUpdated } from '@/components/last-updated';
+import { BannerWrapper } from '@/components/banner-wrapper';
 
 const navbar = (
   <Navbar
@@ -53,7 +54,13 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       </Head>
       <body>
         <Layout
-          banner={<Banner storageKey="nextra-banner" dismissible={true}>Documentation is on progress 📚</Banner>}
+          banner={
+          <BannerWrapper storageKey={"nextra-banner"}>
+              <Banner storageKey={"nextra-banner"} dismissible={true}>
+                Documentation is on progress 📚
+              </Banner>
+            </BannerWrapper>
+          }
           navbar={navbar}
           pageMap={await getPageMap()}
           docsRepositoryBase="https://github.com/fyydsz/webnotes/tree/master"
