@@ -8,11 +8,6 @@ import './globals.css'
 import 'katex/dist/katex.min.css'
 import { LastUpdated } from '@/components/last-updated';
 
-export const metadata = {
-  // Define your metadata here
-  // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
-}
-
 const navbar = (
   <Navbar
     logo={
