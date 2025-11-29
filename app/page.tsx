@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex min-h-[calc(100vh-var(--nextra-navbar-height))] flex-col">
-      {/* Header dihapus, diganti Navbar Nextra */}
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center py-20">
@@ -36,8 +35,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      {/* Footer juga dihapus, diganti Footer Nextra */}
     </div>
   );
 }
