@@ -5,11 +5,6 @@ import path from 'path'
 const BASE_URL = 'https://webnotes-fyy.vercel.app' 
 
 function getMdxFiles(dir: string, fileList: string[] = [], rootDir: string = dir): string[] {
-  // Check if directory exists before trying to read it
-  if (!fs.existsSync(dir)) {
-    return fileList
-  }
-
   const files = fs.readdirSync(dir)
 
   files.forEach((file) => {
@@ -20,7 +15,7 @@ function getMdxFiles(dir: string, fileList: string[] = [], rootDir: string = dir
       getMdxFiles(filePath, fileList, rootDir)
     } else {
       if (file.endsWith('.mdx') || file.endsWith('.md')) {
-        // Create relative path from the root content folder
+        // Buat relative path dari folder content
         const relativePath = path.relative(rootDir, filePath)
         fileList.push(relativePath)
       }
@@ -31,9 +26,7 @@ function getMdxFiles(dir: string, fileList: string[] = [], rootDir: string = dir
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // FIX: Point to the correct directory where your MDX files are located
-  const contentDir = path.join(process.cwd(), 'app', '(documentation)', 'docs')
-  
+  const contentDir = path.join(process.cwd(), 'content')
   const allMdxFiles = getMdxFiles(contentDir)
 
   const routes = allMdxFiles.map((file) => {
@@ -41,10 +34,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       .replace(/\\/g, '/') 
       .replace(/\.mdx?$/, '')
       .replace(/\/index$/, '')
-      .replace(/\/page$/, '') // FIX: Remove '/page' from the end of the slug for App Router
 
-    // Handle the root docs page (usually page.mdx at the root of docs folder)
-    if (slug === '' || slug === 'index') {
+    if (slug === 'index') {
         return {
             url: `${BASE_URL}/docs`,
             lastModified: new Date(),

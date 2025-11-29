@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
 };
 
 const withNextra = nextra({
+  contentDirBasePath: '/docs',
   latex: {
     renderer: 'katex', // 'katex' | 'mathjax'}
     options: {}

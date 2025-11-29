@@ -4,26 +4,25 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const rootDir = process.cwd();
+// TARGET: Folder 'content' sesuai struktur project kamu
+const contentDir = path.join(rootDir, 'content'); 
 const metaFile = path.join(rootDir, 'git-meta.json');
 
-// DEFINISI FOLDER KONTEN
-const contentDirs = [
-  'app/docs',
-  'content'
-];
-
-function getAllFiles(dirPath, arrayOfFiles = []) {
-  if (!fs.existsSync(dirPath)) return arrayOfFiles;
+function getAllFiles(dirPath, arrayOfFiles) {
+  if (!fs.existsSync(dirPath)) {
+    return arrayOfFiles || [];
+  }
   
   const files = fs.readdirSync(dirPath);
+  arrayOfFiles = arrayOfFiles || [];
 
   files.forEach(function(file) {
     const fullPath = path.join(dirPath, file);
     if (fs.statSync(fullPath).isDirectory()) {
-      getAllFiles(fullPath, arrayOfFiles);
+      arrayOfFiles = getAllFiles(fullPath, arrayOfFiles);
     } else {
-      // Ambil hanya file konten yang relevan (.md, .mdx, .tsx)
-      if (/\.(mdx?|tsx)$/.test(file)) {
+      // Ambil hanya file .md dan .mdx
+      if (file.endsWith('.md') || file.endsWith('.mdx')) {
         arrayOfFiles.push(fullPath);
       }
     }
@@ -33,51 +32,39 @@ function getAllFiles(dirPath, arrayOfFiles = []) {
 }
 
 try {
+  if (!fs.existsSync(contentDir)) {
+    console.warn(`⚠️ Folder content tidak ditemukan di ${contentDir}`);
+    fs.writeFileSync(metaFile, '{}');
+    process.exit(0);
+  }
+
+  const files = getAllFiles(contentDir);
   const meta = {};
-  let totalFiles = 0;
 
-  console.log('🔄 Generating git-meta.json...');
+  console.log(`🔍 Scanning ${files.length} files in 'content/'...`);
 
-  contentDirs.forEach(dir => {
-    const absPath = path.join(rootDir, dir);
+  files.forEach((file) => {
+    // Simpan path relatif, misal: content/kalkulus/index.mdx
+    const relativePath = path.relative(rootDir, file).replace(/\\/g, '/');
     
-    if (fs.existsSync(absPath)) {
-      const files = getAllFiles(absPath);
-      totalFiles += files.length;
-
-      files.forEach((file) => {
-        // Buat path relatif dari root project untuk dijadikan KEY di JSON
-        // .replace(/\\/g, '/') memaksa penggunaan forward slash agar konsisten di Windows/Linux
-        const relativePath = path.relative(rootDir, file).replace(/\\/g, '/');
-        
-        try {
-          // Jalankan git log
-          // Gunakan cwd: rootDir untuk memastikan git command berjalan di konteks yang benar
-          const lastCommitDate = execSync(`git log -1 --format=%cs "${relativePath}"`, {
-            cwd: rootDir,
-            encoding: 'utf8'
-          }).trim();
-          
-          if (lastCommitDate) {
-            meta[relativePath] = lastCommitDate;
-          }
-        } catch (e) {
-          // Error biasanya terjadi jika file belum pernah di-commit (untracked)
-          // Kita abaikan saja
-        }
-      });
-    } else {
-      console.warn(`⚠️  Directory not found: ${dir}`);
+    try {
+      // Ambil tanggal commit terakhir
+      const lastCommitDate = execSync(`git log -1 --format=%cs "${relativePath}"`).toString().trim();
+      
+      if (lastCommitDate) {
+        // Kunci JSON kita buat agar cocok dengan URL (opsional, tapi memudahkan)
+        // Kita simpan dengan key path file aslinya
+        meta[relativePath] = lastCommitDate;
+      }
+    } catch (e) {
+      // Ignore error jika file belum di-commit
     }
   });
 
   fs.writeFileSync(metaFile, JSON.stringify(meta, null, 2));
-  console.log(`✅ Success: Scanned ${totalFiles} files. Meta saved to git-meta.json`);
+  console.log('✅ Success: git-meta.json generated.');
 
 } catch (error) {
-  console.error('❌ Error generating meta:', error);
-  // Pastikan file meta tetap ada meski kosong agar build tidak error
-  if (!fs.existsSync(metaFile)) {
-    fs.writeFileSync(metaFile, '{}');
-  }
+  console.error('❌ Error:', error);
+  fs.writeFileSync(metaFile, '{}');
 }

@@ -18,39 +18,22 @@ export const LastUpdated: FC<{
   useEffect(() => {
     if (!pathname) return
 
-    // 1. Bersihkan path dari prefix '/docs', dan slash di awal/akhir
-    const slug = pathname.replace(/^\/docs/, '').replace(/^\//, '').replace(/\/$/, '')
-    
-    // 2. Siapkan variabel untuk slug legacy (folder content biasa pakai 'index' untuk root)
-    const legacySlug = slug === '' ? 'index' : slug
+    let cleanPath = pathname.replace(/^\/docs/, '').replace(/^\//, '').replace(/\/$/, '')
 
-    // 3. Susun kemungkinan lokasi file di git-meta.json
+    // Handle halaman index/root docs
+    if (cleanPath === '') cleanPath = 'index'
+
     const possibleKeys = [
-      // --- Pola App Router (app/...) ---
-      // Menangani file page.mdx di dalam folder (misal: docs/kalkulus/page.mdx atau docs/page.mdx)
-      `app/(documentation)/docs/${slug ? slug + '/' : ''}page.mdx`,
-      `app/(documentation)/docs/${slug ? slug + '/' : ''}page.md`,
-      
-      // Menangani file flat (misal: docs/kalkulus.mdx), hanya jika slug tidak kosong
-      ...(slug ? [
-        `app/(documentation)/docs/${slug}.mdx`,
-        `app/(documentation)/docs/${slug}.md`,
-      ] : []),
-
-      // --- Pola Content Folder (Legacy/Fallback) ---
-      `content/${legacySlug}.mdx`,
-      `content/${legacySlug}.md`,
-      `content/${legacySlug}/index.mdx`,
-      `content/${legacySlug}/index.md`
+      `content/${cleanPath}.mdx`,
+      `content/${cleanPath}.md`,
+      `content/${cleanPath}/index.mdx`,
+      `content/${cleanPath}/index.md`
     ]
 
-    // 4. Cari kunci yang cocok di data JSON
     const foundKey = possibleKeys.find(key => gitMeta[key])
 
     if (foundKey) {
       setDateStr(gitMeta[foundKey])
-    } else {
-      setDateStr(null)
     }
   }, [pathname])
 

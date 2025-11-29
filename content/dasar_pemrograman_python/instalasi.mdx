@@ -1,0 +1,67 @@
+---
+title: Install Python
+description: Panduan lengkap instalasi Python dan penggunaan fungsi print
+---
+
+import { Callout } from 'nextra/components'
+
+# 🚀 Instalasi & Program Pertama
+
+Python dikenal dengan sintaksnya yang sederhana dan mudah dibaca. Mari kita siapkan lingkungan kerja dan membuat program pertama.
+
+## Cek Instalasi Python
+
+Langkah pertama adalah memastikan apakah Python sudah terinstall di komputer kamu.
+
+Buka **Terminal** (Mac/Linux) atau **Command Prompt/PowerShell** (Windows), lalu ketik perintah berikut:
+
+```bash filename="terminal"
+python --version
+# atau jika perintah di atas error, coba:
+python3 --version
+```
+
+Jika muncul tulisan seperti `Python 3.12.0` (atau versi lainnya), artinya Python sudah siap digunakan.
+
+## Download & Install
+
+Jika perintah di atas menampilkan error atau Python belum terinstall, ikuti langkah berikut:
+
+1. Kunjungi situs resmi [python.org/downloads](https://www.python.org/downloads/).
+2. Download installer versi terbaru (tombol kuning besar).
+3. Jalankan installer tersebut.
+4. **PENTING (Windows):** Pastikan kamu mencentang opsi **"Add Python to PATH"** di bagian bawah jendela instalasi sebelum menekan "Install Now". Ini wajib agar perintah `python` bisa dikenali di terminal.
+
+## Program Hello World
+
+Dalam Python, kita menggunakan fungsi `print()` untuk menampilkan teks atau data ke layar (konsol). Ini adalah fungsi paling dasar yang akan sering kamu gunakan untuk *debugging* atau menampilkan output.
+
+### Contoh Kode
+
+Salin kode di bawah ini ke dalam file latihanmu (misalnya `hello.py`):
+
+```python filename="hello.py"
+# Menampilkan teks (String) menggunakan kutip dua
+print("Hello, World!")
+
+# Menampilkan angka (Integer)
+print(2025)
+
+# Menggunakan kutip satu (' ') juga diperbolehkan untuk teks
+print('Belajar Python di Fyy Notebook')
+```
+
+### Output
+
+Jika dijalankan, hasilnya akan terlihat seperti ini di terminal:
+
+```text
+Hello, World!
+2025
+Belajar Python di Fyy Notebook
+```
+
+<Callout type="warning" emoji="⚠️">
+  **Case Sensitive!**<br />
+  Python membedakan huruf besar dan kecil. Pastikan kamu menulis `print` dengan huruf kecil semua. Menulis `Print` atau `PRINT` akan menyebabkan error.
+</Callout>

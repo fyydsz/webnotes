@@ -1,0 +1,73 @@
+---
+title: Variabel & Tipe Data
+description: Memahami konsep variabel dan tipe data dasar dalam Python
+---
+
+import { Callout } from 'nextra/components'
+
+# 📦 Variabel & Tipe Data
+
+Setelah berhasil menampilkan teks, sekarang kita akan belajar cara menyimpan data menggunakan **Variabel** dan mengenal jenis-jenis data (**Tipe Data**) di Python.
+
+## Apa itu Variabel?
+
+Variabel bisa dibayangkan sebagai sebuah "kotak" atau "wadah" untuk menyimpan nilai. Di Python, kamu tidak perlu mendeklarasikan tipe datanya secara eksplisit; Python akan otomatis mengetahuinya.
+
+### Aturan Penulisan Variabel
+1. Harus diawali dengan **huruf** atau **garis bawah** (`_`).
+2. Tidak boleh diawali dengan **angka**.
+3. Hanya boleh mengandung karakter alfanumerik dan garis bawah (A-z, 0-9, dan _).
+4. Bersifat **Case Sensitive** (`nama`, `Nama`, dan `NAMA` adalah variabel yang berbeda).
+
+## Tipe Data Dasar
+
+Ada 4 tipe data utama yang wajib kamu ketahui di awal:
+
+1.  **String (`str`)**: Teks atau karakter, diapit kutip (`"..."` atau `'...'`).
+2.  **Integer (`int`)**: Bilangan bulat (tanpa koma).
+3.  **Float (`float`)**: Bilangan desimal (pecahan).
+4.  **Boolean (`bool`)**: Nilai kebenaran, hanya ada `True` atau `False`.
+
+## Contoh Kode
+
+Salin kode ini ke file `belajar_variabel.py` untuk mencobanya:
+
+```python filename="belajar_variabel.py"
+# 1. String (Teks)
+nama_lengkap = "Budi Santoso"
+hobi = 'Membaca'
+
+# 2. Integer (Bilangan Bulat)
+umur = 21
+tahun_lahir = 2003
+
+# 3. Float (Bilangan Desimal)
+tinggi_badan = 170.5
+nilai_rata_rata = 85.75
+
+# 4. Boolean (Benar/Salah)
+apakah_lulus = True
+apakah_menikah = False
+
+# Mencetak isi variabel
+print("Nama:", nama_lengkap)
+print("Umur:", umur)
+print("Tinggi:", tinggi_badan)
+print("Status Lulus:", apakah_lulus)
+```
+
+### Cek Tipe Data
+
+Kamu bisa menggunakan fungsi `type()` untuk mengetahui tipe data dari sebuah variabel.
+
+```python filename="cek_tipe.py"
+x = 10
+y = "10"
+
+print(type(x))  # Output: <class 'int'>
+print(type(y))  # Output: <class 'str'>
+```
+
+<Callout type="info" emoji="ℹ️">
+  **Tips:** Variabel di Python bersifat *dinamis*. Artinya, kamu bisa mengubah isi variabel dengan tipe data yang berbeda kapan saja (walaupun tidak disarankan demi kerapian kode).
+</Callout>
