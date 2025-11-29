@@ -1,4 +1,4 @@
-"use client"; // Wajib: Client Component
+"use client"; 
 
 import { useState, useEffect } from 'react';
 
@@ -8,20 +8,16 @@ interface BannerWrapperProps {
 }
 
 export function BannerWrapper({ children, storageKey }: BannerWrapperProps) {
-  // Default false (hidden) supaya tidak ada flash saat loading
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Cek apakah key ini ada di localStorage
     const isDismissed = localStorage.getItem(storageKey);
 
-    // Hanya tampilkan jika BELUM ada di localStorage (belum di-dismiss)
     if (!isDismissed) {
       setIsVisible(true);
     }
   }, [storageKey]);
 
-  // Jika tidak visible, jangan render apapun (return null)
   if (!isVisible) return null; 
 
   return <>{children}</>;

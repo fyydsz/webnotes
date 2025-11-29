@@ -36,6 +36,10 @@ const DOCS_ITEMS: Record<string, any> = {
   kalkulus: {
     title: "Kalkulus",
     items: KALKULUS
+  },
+  dasar_pemrograman_python: {
+    title: "Dasar Pemrograman Python",
+    items: DASAR_PEMROGRAMAN_PYTHON
   }
 }
 
