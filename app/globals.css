@@ -4,7 +4,6 @@
 @variant dark (&:where(.dark, .dark *));
 
 @layer base {
-  
   html::-webkit-scrollbar {
     width: 0;
     height: 0;

@@ -1,51 +1,14 @@
 import Link from "next/link";
-// Sesuaikan path import ini dengan lokasi file komponen kamu
-import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Header / Navigation */}
-      <header className="w-full max-w-5xl mx-auto p-6 flex items-center justify-between">
-        <div className="flex items-center gap-2 font-bold text-lg tracking-tight">
-          {/* Logo Icon Sederhana */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M2 6h4" />
-            <path d="M2 10h4" />
-            <path d="M2 14h4" />
-            <path d="M2 18h4" />
-            <rect width="16" height="20" x="4" y="2" rx="2" />
-            <path d="M16 2v20" />
-          </svg>
-          <span>Fyy's Notebook</span>
-        </div>
-
-        <nav className="flex items-center gap-4">
-          <Link
-            href="https://github.com/fyydsz"
-            target="_blank"
-            className="text-sm font-medium text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors hidden sm:block"
-          >
-            GitHub
-          </Link>
-          <ThemeToggle />
-        </nav>
-      </header>
+    <div className="flex min-h-[calc(100vh-var(--nextra-navbar-height))] flex-col">
+      {/* Header dihapus, diganti Navbar Nextra */}
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center py-20">
         <div className="max-w-2xl space-y-8">
-          {/* Badge kecil (Optional, memberikan kesan modern) */}
+          {/* Badge kecil */}
           <div className="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 text-xs sm:px-3 sm:py-1 sm:text-sm text-zinc-800 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 mb-4">
             <span className="flex h-2 w-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
             Digital Garden & Documentation
@@ -74,10 +37,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Footer Minimalis */}
-      <footer className="py-4 sm:py-8 text-center text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
-        <p>© {new Date().getFullYear()} Fyy's Notebook. Built with Next.js & Nextra.</p>
-      </footer>
+      {/* Footer juga dihapus, diganti Footer Nextra */}
     </div>
   );
 }
