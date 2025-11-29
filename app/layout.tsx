@@ -117,7 +117,7 @@ export default async function RootLayout({
           pageMap={await getPageMap()}
           docsRepositoryBase="https://github.com/fyydsz/webnotes/tree/master"
           copyPageButton={false}
-          sidebar={{ toggleButton: true, defaultMenuCollapseLevel: 1 }}
+          sidebar={{ toggleButton: true, defaultMenuCollapseLevel: 2 }}
           lastUpdated={<LastUpdated />}
           feedback={{ content: "Beri kami saran atau masukan", labels: "feedback" }}
           editLink={"Edit halaman ini di Github"}
