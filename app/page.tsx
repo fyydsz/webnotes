@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex min-h-[calc(100vh-var(--nextra-navbar-height))] flex-col">
-
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center py-20">
         <div className="max-w-2xl space-y-8">
@@ -21,7 +20,9 @@ export default function Home() {
           </h1>
 
           <p className="text-sm sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-4xl mx-auto">
-            Kumpulan materi kuliah, tutorial koding, dsb hehe.<br />Ditulis dengan format yang rapi, mudah dibaca, dan terstruktur.
+            Kumpulan materi kuliah, tutorial koding, dsb hehe.
+            <br />
+            Ditulis dengan format yang rapi, mudah dibaca, dan terstruktur.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
@@ -30,8 +31,20 @@ export default function Home() {
               className="h-10 px-6 text-sm sm:h-12 sm:px-8 sm:text-base rounded-full bg-black dark:bg-white text-white dark:text-black font-medium flex items-center justify-center hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all active:scale-95"
             >
               Mulai Membaca
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
-                <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="ml-2"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
               </svg>
             </Link>
           </div>
