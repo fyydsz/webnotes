@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const file = fileEntry.relativePath
     const lastModified = fileEntry.lastModified ?? new Date()
 
-    let slug = file
+    const slug = file
       .replace(/\\/g, '/')
       .replace(/\.mdx?$/, '')
       .replace(/(^|\/)(index|page)$/, '') // Remove trailing 'index' or 'page' including root
