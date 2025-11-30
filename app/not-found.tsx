@@ -8,5 +8,5 @@ export default function NotFound() {
         <p className="text-xl mb-1">Page Not Found</p>
       </div>
     </NotFoundPage>
-  )
+  );
 }
