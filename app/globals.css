@@ -236,4 +236,88 @@ html:not(.dark) {
         border-style: solid !important;
         border-color: transparent !important; /* hide the outer border */
     }
+    /* --- CARDS COMPONENT THEME (REVISED) --- */
+
+    /* Layout Grid */
+    .nextra-cards {
+        grid-template-columns: repeat(
+            auto-fill,
+            minmax(max(250px, calc((100% - 1rem * 2) / var(--rows))), 1fr)
+        ) !important;
+        gap: 1rem !important;
+    }
+
+    /* Base Card Style (Default) */
+    .nextra-card {
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        /* Tambahkan border default agar kotak terlihat (tidak invisible) */
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        background-color: transparent !important;
+    }
+
+    /* Default border untuk Dark Mode */
+    html.dark .nextra-card {
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .nextra-card img {
+        user-select: none;
+    }
+    .nextra-card p {
+        margin-top: 0.5rem !important;
+    }
+
+    /* Icon Default (Dimmed) */
+    .nextra-card > span > svg {
+        width: 1.5rem !important;
+        height: auto !important;
+        transition: all 0.3s ease !important;
+        flex-shrink: 0 !important;
+        opacity: 0.6 !important;
+    }
+
+    /* --- HOVER EFFECTS --- */
+
+    /* LIGHT MODE HOVER: STRANGER THINGS RED */
+    html:not(.dark) .nextra-card:hover {
+        /* Border Merah Tegas */
+        border-color: var(--st-red-base) !important;
+
+        /* Background Merah yang lebih "Berasa" (10% Opacity Merah)
+               Kalau mau lebih merah lagi, naikkan 0.1 jadi 0.2 */
+        background-color: rgba(220, 20, 60, 0.1) !important;
+
+        /* Shadow Merah Menyala */
+        box-shadow:
+            0 4px 20px rgba(220, 20, 60, 0.2),
+            0 0 0 1px var(--st-red-base) !important;
+
+        transform: translateY(-3px) !important;
+    }
+
+    /* Icon Light Mode Hover */
+    html:not(.dark) .nextra-card:hover > span > svg {
+        color: var(--st-red-base) !important;
+        opacity: 1 !important;
+        filter: drop-shadow(0 0 2px rgba(220, 20, 60, 0.5));
+        transform: scale(1.1);
+    }
+
+    /* DARK MODE HOVER: UPSIDE DOWN BLUE */
+    html.dark .nextra-card:hover {
+        border-color: var(--st-blue-base) !important;
+        background-color: rgba(6, 182, 212, 0.1) !important; /* Cyan Tint */
+        box-shadow:
+            0 0 15px var(--st-blue-glow),
+            inset 0 0 10px rgba(6, 182, 212, 0.1) !important;
+        transform: translateY(-3px) !important;
+    }
+
+    /* Icon Dark Mode Hover */
+    html.dark .nextra-card:hover > span > svg {
+        color: var(--st-blue-base) !important;
+        opacity: 1 !important;
+        filter: drop-shadow(0 0 8px var(--st-blue-base));
+        transform: scale(1.1);
+    }
 }
