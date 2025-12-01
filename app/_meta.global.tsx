@@ -12,10 +12,10 @@ const LOGIKA_MATEMATIKA: Record<string, string> = {
   tabel_kebenaran: "",
 };
 
-// const DASAR_PEMROGRAMAN_PYTHON: Record<string, string> = {
-//   instalasi: '',
-//   variable: '',
-// }
+const DASAR_PEMROGRAMAN_PYTHON: Record<string, string> = {
+  install_python: "",
+  sintaks_dasar: "",
+};
 
 const KALKULUS: Record<string, string> = {
   pengenalan_kalkulus: "",
@@ -41,10 +41,10 @@ const DOCS_ITEMS: Record<
     title: "Kalkulus",
     items: KALKULUS,
   },
-  // dasar_pemrograman_python: {
-  //   title: "Dasar Pemrograman Python",
-  //   items: DASAR_PEMROGRAMAN_PYTHON
-  // }
+  dasar_pemrograman_python: {
+    title: "Dasar Pemrograman Python",
+    items: DASAR_PEMROGRAMAN_PYTHON,
+  },
 };
 
 const ROUTES = {

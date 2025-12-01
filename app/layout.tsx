@@ -146,7 +146,7 @@ export default async function RootLayout({
         <Layout
           banner={
             <Banner storageKey="koding" dismissible={true}>
-              Materi koding akan rilis di awal bulan Desember 📚📖
+              Materi Dasar Pemrograman Python Telah Dirilis📚📖
             </Banner>
           }
           navbar={navbar}
