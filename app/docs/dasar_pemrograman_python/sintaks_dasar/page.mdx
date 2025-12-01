@@ -1,0 +1,90 @@
+---
+title: Sintaks Dasar & Variabel
+description: Memahami aturan penulisan Python, variabel, dan tipe data dasar.
+---
+
+import { Callout } from 'nextra/components'
+
+# 📝 Sintaks Dasar & Variabel
+
+Sebelum membuat program yang rumit, kita harus paham dulu aturan main (tata bahasa) di Python.
+
+## 1. Variabel
+
+Variabel itu ibarat **wadah** atau **kotak** untuk menyimpan data. Di Python, kita tidak perlu repot mendeklarasikan tipe datanya (seperti `int` atau `String` di bahasa lain). Python cukup pintar untuk mengetahuinya sendiri.
+
+```python filename="variabel.py"
+# Membuat variabel
+nama = "Raffi"       # Teks (String)
+umur = 21            # Angka bulat (Integer)
+tinggi = 170.5       # Angka desimal (Float)
+is_pelajar = True    # Benar/Salah (Boolean)
+
+# Mencetak isi variabel
+print(nama)
+print(umur)
+```
+
+### Aturan Penamaan Variabel
+* ✅ Boleh pakai huruf, angka, dan underscore (`_`).
+* ✅ Harus diawali dengan **huruf** atau **underscore**.
+* ❌ **Tidak boleh** diawali dengan angka.
+* ❌ **Tidak boleh** pakai spasi (gunakan `_` sebagai pemisah).
+* ⚠️ Bersifat **Case-sensitive** (huruf besar/kecil dibedakan). `nama` beda dengan `Nama`.
+
+---
+
+## 2. Indentasi (PENTING!) 🚨
+
+Ini yang membedakan Python dengan bahasa lain. Python menggunakan **spasi** (indentasi) untuk mengelompokkan blok kode, bukan kurung kurawal `{}`.
+
+Jika indentasi kamu salah, program akan **error**.
+
+```python filename="indentasi.py"
+if 10 > 5:
+    # Baris ini menjorok ke dalam (biasanya 4 spasi atau 1 Tab)
+    print("Sepuluh lebih besar dari lima") 
+    print("Ini masih di dalam blok if")
+
+print("Ini di luar blok if") # Tidak menjorok
+```
+
+<Callout type="warning" emoji="⚠️">
+  **IndentationError:** Jika kamu melihat pesan error ini, artinya ada spasi yang kurang pas atau tidak sejajar di kodemu.
+</Callout>
+
+---
+
+## 3. Komentar (Comments)
+
+Komentar adalah catatan untuk manusia (programmer) dan **tidak akan dijalankan** oleh komputer. Gunakan tanda pagar `#`.
+
+```python filename="komentar.py"
+# Ini adalah komentar satu baris
+print("Kode ini jalan") # Ini komentar di ujung kode
+
+"""
+Ini adalah komentar
+banyak baris (multi-line)
+biasanya untuk dokumentasi
+"""
+```
+
+---
+
+## 4. Tipe Data Dasar
+
+Meskipun Python otomatis, kita tetap perlu tahu jenis data yang kita simpan.
+
+| Tipe Data | Contoh | Keterangan |
+| :--- | :--- | :--- |
+| **String** (`str`) | `"Halo"`, `'Python'` | Teks, diapit kutip satu atau dua. |
+| **Integer** (`int`) | `10`, `-5`, `0` | Bilangan bulat. |
+| **Float** (`float`) | `3.14`, `2.5` | Bilangan desimal (koma pakai titik). |
+| **Boolean** (`bool`) | `True`, `False` | Nilai kebenaran (Benar/Salah). |
+
+```python filename="cek_tipe.py"
+nilai = 100.5
+print(type(nilai)) 
+# Output: <class 'float'>
+```
