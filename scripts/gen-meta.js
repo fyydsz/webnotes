@@ -62,8 +62,7 @@ try {
             meta[relativePath] = lastCommitDate;
           }
         } catch (e) {
-          // Error biasanya terjadi jika file belum pernah di-commit (untracked)
-          // Kita abaikan saja
+          console.warn(e);
         }
       });
     } else {
