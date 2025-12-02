@@ -21,8 +21,7 @@ const geistMono = Geist_Mono({
 });
 
 // --- Konfigurasi SEO (Dari Landing Page) ---
-const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL || "https://webnotes-fyy.vercel.app";
+const BASE_URL = "https://webnotes-fyy.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

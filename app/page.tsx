@@ -39,7 +39,7 @@ export default function Home() {
                       dark:text-blue-100/80"
           >
             <span className="text-[hsl(355,85%,45%)] dark:text-cyan-300">
-              Kumpulan materi kuliah, tutorial koding, dsb hehe.
+              Kumpulan catatan kuliah.
             </span>
             <br />
             <span className="italic opacity-80 text-[hsl(355,85%,45%)] dark:text-cyan-300">
