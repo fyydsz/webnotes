@@ -60,4 +60,4 @@ Required: nodejs & pnpm
 ```
 
 ## 📄 License
-Proyek ini dilisensikan di bawah [MIT License](https://opensource.org/license/mit).
+Project ini dilisensikan di bawah [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
