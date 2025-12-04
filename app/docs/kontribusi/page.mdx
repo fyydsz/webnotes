@@ -1,0 +1,71 @@
+---
+title: Kontribusi & Lisensi
+description: Cara berkontribusi pada proyek Catatan Kampus ini.
+asIndexPage: true
+---
+
+import { Cards } from "nextra/components";
+import { Callout } from "nextra/components";
+import { Steps } from "nextra/components";
+
+# 🤝 Kontribusi & Lisensi Project
+
+Terima kasih telah tertarik untuk berkontribusi pada proyek **Buku Kampus**! Proyek ini bersifat **open-source** dan sangat terbuka bagi siapa saja yang ingin membantu mengembangkan catatan atau materi baru.
+
+## Cara Berkontribusi
+
+Berikut adalah langkah-langkah untuk mulai berkontribusi:
+
+<Steps>
+  
+  ### Fork Repository 
+  Kunjungi project [GitHub Buku Kampus](https://github.com/fyydsz/webnotes) dan klik tombol "Fork" untuk
+  membuat salinan repository ke akun GitHub kamu.
+  ### Clone Repository
+  Setelah melakukan fork, clone repository tersebut ke komputer lokal kamu menggunakan perintah:
+  ```bash
+  git clone
+  ```
+  ### Buat Cabang Baru
+  Sebelum melakukan perubahan, buat cabang (branch) baru untuk penambahan atau perbaikan yang akan kamu lakukan:
+  ```bash
+  git checkout -b add-kalkulus # (Sesuaikan nama cabang dengan perubahan yang kamu buat)  
+  ```
+  ### Lakukan Perubahan
+  Project ini menggunakan format MDX untuk memuat halaman-halaman materi atau catatan.
+  
+  * Jika kamu ingin menambahkan materi baru, buat folder baru di dalam `app/docs` dengan nama topik yang sesuai, lalu tambahkan file `page.mdx` di dalam folder tersebut. 
+  * Untuk mengedit materi yang sudah ada, edit file `page.mdx` yang relevan di dalam folder yang sesuai, misalnya `app/docs/kalkulus/page.mdx`.
+  
+  <Callout type="info">
+    Untuk sintaks penulisan file MDX, kamu bisa merujuk ke dokumentasi [Nextra](https://nextra.site/docs/built-ins).
+  </Callout>
+  
+  ### Commit dan Push Perubahan
+  Setelah selesai melakukan perubahan, commit perubahan tersebut dengan pesan yang jelas:
+  ```bash
+  git add .
+  git commit -m "Menambahkan materi Kalkulus"
+  git push origin add-kalkulus # (Sesuaikan dengan nama cabang yang kamu buat)  
+  ```
+  ### Buat Pull Request
+  Kunjungi repository GitHub kamu, lalu buat Pull Request (PR) dari cabang yang telah kamu buat ke cabang `master` pada repository asli Buku Kampus.
+</Steps>
+
+## Lisensi Project
+Project ini dilisensikan di bawah [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/). Dengan berkontribusi pada proyek ini, kamu menyetujui bahwa kontribusi kamu akan dilisensikan di bawah lisensi yang sama.
+
+**Siapa pun diizinkan untuk:**
+* Menyalin dan mendistribusikan materi dalam bentuk dan media apa pun.
+* Mengadaptasi, mengubah, dan membuat karya turunan untuk segala tujuan, termasuk komersial.
+
+**Dengan _syarat_:**
+* Kamu harus memberikan attribusi yang sesuai: menyebutkan penulis asli, menyertakan tautan ke sumber (misalnya repository), mencantumkan tautan ke lisensi, dan menyatakan jika kamu melakukan perubahan.
+* Jika kamu membuat karya turunan, kamu harus mendistribusikan karya turunan tersebut di bawah lisensi yang sama (ShareAlike/SA).
+* Kamu tidak boleh menambahkan pembatasan hukum atau teknologi yang mencegah orang lain melakukan hal-hal yang diizinkan oleh lisensi.
+
+Lisensi ini tidak memberikan jaminan apa pun; penulis atau kontributor tidak bertanggung jawab atas kerusakan yang mungkin timbul dari penggunaan materi ini.
+
+<Callout type="info">
+  Ringkasnya: **Bebas digunakan, asal menyertakan kredit dan membagikan turunan dengan lisensi yang sama (CC BY-SA 4.0).**
+</Callout>
