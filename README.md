@@ -46,15 +46,28 @@ Required: nodejs & pnpm
 ```
 .
 ├── app/
-│   ├── (documentation)/docs/  # Layout dan konfigurasi halaman dokumentasi
-│   ├── (landing-page)/        # Halaman depan (Home)
-│   └── _meta.global.tsx       # Konfigurasi navigasi/sidebar global
-├── content/                   # 📝 Tempat menyimpan file materi (MDX)
-│   ├── bahasa_indonesia/
-│   ├── logika_matematika/
-│   ├── index.mdx
-│   └── tentang.mdx
+│   ├── _components/           # Komponen internal aplikasi
+│   │   └── footer/            # Footer component
+│   ├── docs/                  # 📝 Dokumentasi & Materi (MDX)
+│   │   ├── bahasa_indonesia/
+│   │   ├── dasar_pemrograman_python/
+│   │   ├── kalkulus/
+│   │   ├── kontribusi/
+│   │   ├── logika_matematika/
+│   │   ├── tentang/
+│   │   └── page.mdx           # Halaman utama docs
+│   ├── support/               # Halaman support/donasi
+│   ├── _meta.global.tsx       # Konfigurasi navigasi/sidebar global
+│   ├── globals.css            # Global styles & Stranger Things theme
+│   ├── layout.tsx             # Root layout dengan Nextra
+│   ├── page.tsx               # Landing page
+│   └── not-found.tsx          # 404 page
+├── components/                # Reusable components
+│   ├── last-updated.tsx       # Last updated timestamp
+│   ├── latex.tsx              # LaTeX rendering
+│   └── theme-toggle.tsx       # Dark/Light mode toggle
 ├── public/                    # Aset statis (gambar, icon)
+├── scripts/                   # Build scripts (pagefind, etc)
 ├── next.config.ts             # Konfigurasi Next.js & Nextra
 └── package.json
 ```
