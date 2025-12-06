@@ -1,6 +1,6 @@
 ---
 title: Turunan (Derivatif)
-description: Pengertian turunan menggunakan limit delta x, aturan pangkat, dan contoh soal.
+description: Pengertian turunan, aturan dasar, perkalian, pembagian, dan rantai.
 ---
 
 import { Callout } from 'nextra/components'
@@ -10,32 +10,25 @@ import { Latex } from "@/components/latex"
 
 **Turunan** adalah pengukuran terhadap bagaimana nilai suatu fungsi berubah seiring perubahan nilai inputnya. Secara geometris, turunan merepresentasikan **kemiringan (gradien)** garis singgung pada suatu titik di kurva fungsi.
 
-## Konsep Dasar (Definisi Limit)
+## 1. Konsep Dasar (Definisi Limit)
 
-Jika diketahui fungsi <Latex>{`f(x)`}</Latex>, maka turunannya didefinisikan sebagai limit dari perubahan rata-rata fungsi tersebut saat perubahannya mendekati nol.
-
-Kita menggunakan notasi <Latex>{`\\Delta x`}</Latex> (delta x) untuk melambangkan perubahan kecil pada variabel <Latex>{`x`}</Latex>.
-
-Rumus definisi turunan adalah:
+Secara formal, turunan didefinisikan menggunakan limit. Kita menggunakan notasi <Latex>{`\\Delta x`}</Latex> untuk melambangkan perubahan kecil pada variabel <Latex>{`x`}</Latex>.
 
 <Latex block>{`
   f'(x) = \\lim_{\\Delta x \\to 0} \\frac{f(x + \\Delta x) - f(x)}{\\Delta x}
 `}</Latex>
 
-**Penjelasan Rumus:**
-* <Latex>{`f(x + \\Delta x) - f(x)`}</Latex>: Selisih nilai fungsi (perubahan pada sumbu Y).
-* <Latex>{`\\Delta x`}</Latex>: Selisih nilai input (perubahan pada sumbu X).
-* <Latex>{`\\lim_{\\Delta x \\to 0}`}</Latex>: Kita mengambil jarak yang sangat kecil (hampir 0) agar mendapatkan kemiringan di satu titik tepat.
+---
 
-## Rumus-Rumus Dasar (Aturan Turunan)
+## 2. Rumus-Rumus Dasar
 
-Menggunakan definisi limit setiap saat akan memakan waktu lama. Berikut adalah aturan praktis (rumus cepat) untuk mencari turunan fungsi aljabar:
+Untuk mempercepat perhitungan, kita menggunakan aturan praktis berikut:
 
-### 1. Turunan Konstanta
-Jika <Latex>{`f(x) = k`}</Latex> (angka saja), maka turunannya nol karena nilainya tidak pernah berubah.
+### A. Turunan Konstanta
+Jika <Latex>{`f(x) = k`}</Latex> (angka saja), maka turunannya selalu nol.
 <Latex block>{`f'(x) = 0`}</Latex>
 
-### 2. Aturan Pangkat (Power Rule)
+### B. Aturan Pangkat (Power Rule)
 Jika <Latex>{`f(x) = ax^n`}</Latex>, maka:
 
 <Latex block>{`f'(x) = n \\cdot a x^{n-1}`}</Latex>
@@ -44,111 +37,106 @@ Jika <Latex>{`f(x) = ax^n`}</Latex>, maka:
   **Cara Cepat:** "Pangkat turun ke depan dikali koefisien, lalu pangkatnya dikurangi satu."
 </Callout>
 
-### 3. Sifat Penjumlahan & Pengurangan
+### C. Penjumlahan & Pengurangan
 Turunan dari penjumlahan fungsi adalah jumlah dari turunannya.
 <Latex block>{`y' = u'(x) \\pm v'(x)`}</Latex>
 
-## Contoh Soal & Pembahasan
-Berikut contoh dari penerapan aturan turunan di atas:
+---
 
-### Soal 1: Fungsi Pangkat
-Tentukan turunan pertama dari <Latex>{`f(x) = 4x^3`}</Latex>.
+## 3. Contoh Soal Dasar
 
-**Penyelesaian:**
-<Latex block>{`
-  \\begin{aligned}
-  f'(x) &= 3 \\cdot 4 x^{3-1} \\\\
-  &= 12x^2
-  \\end{aligned}
-`}</Latex>
-
-### Soal 2: Polinomial
+### Soal 1: Polinomial
 Tentukan turunan dari <Latex>{`y = 2x^4 - 6x + 15`}</Latex>.
 
 **Penyelesaian:**
-Turunkan suku demi suku:
-1.  <Latex>{`2x^4 \\to 4 \\cdot 2x^3 = 8x^3`}</Latex>
-2.  <Latex>{`-6x \\to 1 \\cdot -6x^0 = -6`}</Latex>
-3.  <Latex>{`15 \\to 0`}</Latex> (Konstanta hilang)
+1. <Latex>{`2x^4 \\to 4 \\cdot 2x^3 = 8x^3`}</Latex>
+2. <Latex>{`-6x \\to 1 \\cdot -6x^0 = -6`}</Latex>
+3. <Latex>{`15 \\to 0`}</Latex>
 
-Hasil akhir:
-<Latex block>{`y' = 8x^3 - 6`}</Latex>
+Hasil akhir: <Latex>{`y' = 8x^3 - 6`}</Latex>
 
-### Soal 3: Menggunakan Definisi Limit (Opsional)
-Buktikan turunan <Latex>{`f(x) = x^2`}</Latex> adalah <Latex>{`2x`}</Latex> menggunakan rumus <Latex>{`\\Delta x`}</Latex>!
+### Soal 2: Akar & Pecahan
+Tentukan turunan dari <Latex>{`f(x) = \\sqrt{x} + \\frac{1}{x^2}`}</Latex>.
 
 **Penyelesaian:**
+Ubah dulu ke bentuk pangkat: <Latex>{`f(x) = x^{1/2} + x^{-2}`}</Latex>.
+
 <Latex block>{`
   \\begin{aligned}
-  f'(x) &= \\lim_{\\Delta x \\to 0} \\frac{(x + \\Delta x)^2 - x^2}{\\Delta x} \\\\
-  &= \\lim_{\\Delta x \\to 0} \\frac{x^2 + 2x\\Delta x + (\\Delta x)^2 - x^2}{\\Delta x} \\\\
-  &= \\lim_{\\Delta x \\to 0} \\frac{2x\\Delta x + (\\Delta x)^2}{\\Delta x} \\\\
-  &= \\lim_{\\Delta x \\to 0} (2x + \\Delta x) \\\\
-  &= 2x + 0 \\\\
-  &= 2x
+  f'(x) &= \\frac{1}{2}x^{-1/2} - 2x^{-3} \\\\
+  &= \\frac{1}{2\\sqrt{x}} - \\frac{2}{x^3}
   \\end{aligned}
 `}</Latex>
 
-### Soal 4: Pangkat Negatif & Kombinasi
-Tentukan turunan dari <Latex>{`f(x) = 2x^{-3} + 4x^4`}</Latex>.
+---
 
-**Penyelesaian:**
-Kita gunakan aturan pangkat untuk setiap suku. Jangan lupa, jika pangkatnya negatif, saat dikurangi 1, angkanya akan semakin "negatif" (semakin kecil).
+## 4. Aturan Lanjut (Advanced Rules)
 
-<Latex block>{`
-  \\begin{aligned}
-  f'(x) &= \\frac{d}{dx}(2x^{-3}) + \\frac{d}{dx}(4x^4) \\\\
-  &= 2 \\cdot (-3) x^{-3-1} + 4 \\cdot 4 x^{4-1} \\\\
-  &= -6x^{-4} + 16x^3
-  \\end{aligned}
-`}</Latex>
-
-Bentuk <Latex>{`-6x^{-4}`}</Latex> bisa juga ditulis sebagai <Latex>{`-\\frac{6}{x^4}`}</Latex>.
-
-### Soal 5: Koefisien dan Pangkat Pecahan
-Tentukan turunan dari <Latex>{`f(x) = \\frac{2}{7}x^{\\frac{7}{4}}`}</Latex>.
-
-**Penyelesaian:**
-Ini terlihat rumit, tapi caranya sama persis: **Kalikan pangkat ke depan, lalu kurangi pangkat dengan 1**.
-
-1.  **Turunkan pangkatnya:** Kalikan <Latex>{`\\frac{7}{4}`}</Latex> dengan koefisien <Latex>{`\\frac{2}{7}`}</Latex>.
-2.  **Kurangi pangkatnya:** <Latex>{`\\frac{7}{4} - 1 = \\frac{7}{4} - \\frac{4}{4} = \\frac{3}{4}`}</Latex>.
+### D. Aturan Perkalian (Product Rule)
+Digunakan jika <Latex>{`f(x)`}</Latex> adalah hasil kali dua fungsi, kita sebut saja fungsi **a** (depan) dan fungsi **b** (belakang).
 
 <Latex block>{`
-  \\begin{aligned}
-  f'(x) &= \\frac{7}{4} \\cdot \\frac{2}{7} x^{\\frac{7}{4} - 1} \\\\
-  &= \\frac{14}{28} x^{\\frac{3}{4}} \\\\
-  &= \\frac{1}{2} x^{\\frac{3}{4}}
-  \\end{aligned}
+  \\text{Jika } f(x) = a \\cdot b \\quad \\text{maka} \\quad f'(x) = a' \\cdot b + a \\cdot b'
 `}</Latex>
 
 <Callout type="info" emoji="💡">
-  **Tips Pecahan:** Saat mengurangi pangkat pecahan dengan 1, cukup kurangi **pembilang** dengan **penyebut**nya.
-  Contoh: <Latex>{`\\frac{7}{4} \\to 7-4 = 3 \\to \\frac{3}{4}`}</Latex>.
+  **Hafalan:** "Turunan depan ($a'$) kali belakang ($b$), ditambah depan ($a$) kali turunan belakang ($b'$)."
 </Callout>
 
-### Soal 6: Turunan Akar Kuadrat
-Tentukan turunan dari <Latex>{`f(x) = \\sqrt{x}`}</Latex>.
-
-**Penyelesaian:**
-Langkah pertama adalah mengubah bentuk akar menjadi bentuk pangkat pecahan. Ingat bahwa <Latex>{`\\sqrt{x} = x^{1/2}`}</Latex>.
-
-Setelah itu, gunakan aturan pangkat seperti biasa:
+**Contoh:** Tentukan turunan <Latex>{`y = (2x + 3)(x^2)`}</Latex>.
+* Misal <Latex>{`a = 2x + 3 \\to a' = 2`}</Latex>
+* Misal <Latex>{`b = x^2 \\to b' = 2x`}</Latex>
 
 <Latex block>{`
   \\begin{aligned}
-  f(x) &= x^{\\frac{1}{2}} \\\\
-  f'(x) &= \\frac{1}{2} \\cdot x^{\\frac{1}{2} - 1} \\\\
-  &= \\frac{1}{2} x^{-\\frac{1}{2}}
+  y' &= (2)(x^2) + (2x+3)(2x) \\\\
+  &= 2x^2 + 4x^2 + 6x \\\\
+  &= 6x^2 + 6x
   \\end{aligned}
 `}</Latex>
 
-Biasanya, kita diminta mengembalikan jawaban ke dalam bentuk akar agar lebih rapi. Ingat bahwa pangkat negatif berarti "satu per...", dan pangkat setengah berarti "akar".
+### E. Aturan Pembagian (Quotient Rule)
+Digunakan jika <Latex>{`f(x)`}</Latex> adalah pembagian dua fungsi, kita sebut fungsi **a** (atas) dan fungsi **b** (bawah).
 
 <Latex block>{`
-  f'(x) = \\frac{1}{2} \\cdot \\frac{1}{x^{1/2}} = \\frac{1}{2\\sqrt{x}}
+  \\text{Jika } f(x) = \\frac{a}{b} \\quad \\text{maka} \\quad f'(x) = \\frac{a' \\cdot b - a \\cdot b'}{b^2}
 `}</Latex>
 
-<Callout type="info" emoji="💡">
-  **Hafalan Cepat:** Turunan dari <Latex>{`\\sqrt{x}`}</Latex> adalah <Latex>{`\\frac{1}{2\\sqrt{x}}`}</Latex>. Ini akan sering sekali kamu pakai!
+<Callout type="warning" emoji="⚠️">
+  **Hati-hati!** Tandanya adalah **kurang (-)**, dan urutannya tidak boleh terbalik.
+  **Hafalan:** "Turunan atas ($a'$) kali bawah ($b$), **dikurang** atas ($a$) kali turunan bawah ($b'$), dibagi bawah kuadrat ($b^2$)."
 </Callout>
+
+**Contoh:** Tentukan turunan <Latex>{`y = \\frac{x^2}{x+1}`}</Latex>.
+* Atas: <Latex>{`a = x^2 \\to a' = 2x`}</Latex>
+* Bawah: <Latex>{`b = x+1 \\to b' = 1`}</Latex>
+
+<Latex block>{`
+  \\begin{aligned}
+  y' &= \\frac{(2x)(x+1) - (x^2)(1)}{(x+1)^2} \\\\
+  &= \\frac{2x^2 + 2x - x^2}{(x+1)^2} \\\\
+  &= \\frac{x^2 + 2x}{(x+1)^2}
+  \\end{aligned}
+`}</Latex>
+
+### F. Aturan Rantai (Chain Rule)
+Digunakan untuk fungsi komposisi (fungsi di dalam fungsi), seperti <Latex>{`y = (u(x))^n`}</Latex>.
+
+<Latex block>{`
+  f'(x) = n \\cdot (u(x))^{n-1} \\cdot u'(x)
+`}</Latex>
+
+<Callout type="info" emoji="🔗">
+  **Konsep:** Turunkan fungsi luarnya (pangkat), lalu **kalikan** dengan turunan fungsi dalamnya.
+</Callout>
+
+**Contoh:** Tentukan turunan <Latex>{`y = (3x^2 - 5)^4`}</Latex>.
+* Fungsi dalam: <Latex>{`u = 3x^2 - 5 \\to u' = 6x`}</Latex>
+* Fungsi luar: <Latex>{`(\\dots)^4`}</Latex>
+
+<Latex block>{`
+  \\begin{aligned}
+  y' &= 4(3x^2 - 5)^{4-1} \\cdot (6x) \\\\
+  &= 24x(3x^2 - 5)^3
+  \\end{aligned}
+`}</Latex>
