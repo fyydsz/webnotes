@@ -29,8 +29,8 @@ Required: nodejs & pnpm
 
 1. **Clone repository**
    ```bash
-   git clone https://github.com/fyydsz/webnotes.git
-   cd webnotes
+   git clone https://github.com/fyydsz/bukukampus.git
+   cd bukukampus
    ```
 2. Instal dependency menggunakan pnpm sebagai package manager.
    ```

@@ -8,7 +8,7 @@ Berikut langkah-langkah untuk mulai berkontribusi:
 
 ### 1. Fork Repository
 Kunjungi repository Buku Kampus:  
-https://github.com/fyydsz/webnotes  
+https://github.com/fyydsz/bukukampus  
 Klik tombol **Fork** untuk membuat salinan repository ke akun GitHub kamu.
 
 ### 2. Clone Repository

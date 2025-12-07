@@ -126,7 +126,7 @@ const navbar = (
         </svg>
       </div>
     }
-    projectLink={"https://github.com/fyydsz/webnotes"}
+    projectLink={"https://github.com/fyydsz/bukukampus"}
   >
     <ThemeToggle />
   </Navbar>
@@ -160,7 +160,7 @@ export default async function RootLayout({
           }
           navbar={navbar}
           pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/fyydsz/webnotes/tree/master"
+          docsRepositoryBase="https://github.com/fyydsz/bukukampus/tree/master"
           copyPageButton={false}
           sidebar={{ toggleButton: true, defaultMenuCollapseLevel: 1 }}
           lastUpdated={<LastUpdated />}
