@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default: "Buku Kampus",
-    template: "%s - Buku Kampus",
+    template: "%s | Buku Kampus",
   },
   description:
     "Digital Garden & Dokumentasi pribadi M.Raffi Pra Diestyawan. Catatan belajar pemrograman, kalkulus, dan bahasa Indonesia.",
