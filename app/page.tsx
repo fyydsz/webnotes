@@ -9,40 +9,40 @@ export default function Home() {
           {/* Badge kecil */}
           <div
             className="inline-flex items-center rounded-full px-3 py-1 text-xs sm:text-sm mb-4 border transition-colors duration-300
-                      /* Light: Merah Pudar ala Label Obat/File Rahasia */
-                      border-red-900/20 bg-red-50 text-red-900
+                      /* Light: Subtle neutral */
+                      border-zinc-200 bg-zinc-50 text-zinc-700
                       /* Dark: Biru Toxic Glowing */
                       dark:border-blue-500/30 dark:bg-blue-900/20 dark:text-blue-200 dark:shadow-[0_0_10px_rgba(59,130,246,0.2)]"
           >
             <span
               className="flex h-2 w-2 rounded-full mr-2 animate-pulse
                         /* Dot Indicator */
-                        bg-red-700 dark:bg-cyan-400"
+                        bg-cyan-600 dark:bg-cyan-400"
             ></span>
             <span className="font-semibold tracking-wide">
               Digital Garden & Documentation
             </span>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight text-[hsl(355,85%,45%)] dark:text-white">
+          <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white">
             Catatan Belajar, <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[hsl(355,85%,45%)] to-[hsl(355,100%,30%)] dark:from-blue-400 dark:to-cyan-300">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">
               Disimpan Rapi.
             </span>
           </h1>
 
           <p
             className="text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto font-serif
-                      /* Light: Abu Tua (Tinta) */
-                      text-zinc-800
+                      /* Light: Neutral untuk readability */
+                      text-zinc-700
                       /* Dark: Biru Pucat (Kabut) */
                       dark:text-blue-100/80"
           >
-            <span className="text-[hsl(355,85%,45%)] dark:text-cyan-300">
+            <span className="text-zinc-800 dark:text-white">
               Kumpulan catatan kuliah.
             </span>
             <br />
-            <span className="italic opacity-80 text-[hsl(355,85%,45%)] dark:text-cyan-300">
+            <span className="italic opacity-80 text-zinc-600 dark:text-white">
               Ditulis dengan format yang rapi, mudah dibaca, dan terstruktur.
             </span>
           </p>
@@ -52,15 +52,15 @@ export default function Home() {
               href="/docs"
               className="group relative h-12 px-8 rounded-full font-bold flex items-center justify-center transition-all duration-300 active:scale-95
 
-                        /* LIGHT MODE: Narrow Red Border (like dark-mode but red) */
-                        bg-transparent text-[hsl(355,85%,45%)] border-2 border-[hsl(355,85%,45%)/50]
-                        shadow-[0_0_8px_rgba(220,20,60,0.2)]
-                        hover:bg-[hsl(355,85%,45%)/8] hover:border-[hsl(355,85%,45%)/70] hover:shadow-[0_0_12px_rgba(220,20,60,0.3)]
+                        /* LIGHT MODE: Black Border */
+                        bg-transparent text-zinc-900 border-2 border-zinc-300
+                        shadow-[0_0_8px_rgba(0,0,0,0.1)]
+                        hover:bg-zinc-50 hover:border-zinc-400 hover:shadow-[0_0_12px_rgba(0,0,0,0.15)]
 
-                        /* DARK MODE: Upside Down Neon Border */
-                        dark:bg-transparent dark:text-cyan-300 dark:border-2 dark:border-cyan-500/50
-                        dark:shadow-[0_0_15px_rgba(6,182,212,0.3)]
-                        dark:hover:bg-cyan-950/30 dark:hover:border-cyan-400 dark:hover:shadow-[0_0_25px_rgba(6,182,212,0.6)]"
+                        /* DARK MODE: White Border */
+                        dark:bg-transparent dark:text-white dark:border-2 dark:border-zinc-600
+                        dark:shadow-[0_0_8px_rgba(255,255,255,0.1)]
+                        dark:hover:bg-zinc-800 dark:hover:border-zinc-500 dark:hover:shadow-[0_0_12px_rgba(255,255,255,0.15)]"
             >
               <span className="relative z-10 flex items-center">
                 Mulai Membaca
@@ -87,15 +87,15 @@ export default function Home() {
               rel="noopener noreferrer"
               className="group relative h-12 px-8 rounded-full font-bold flex items-center justify-center transition-all duration-300 active:scale-95
 
-                         /* LIGHT MODE */
-                         bg-[hsl(355,85%,45%)] text-white border-2 border-[hsl(355,85%,45%)]
-                         shadow-[0_4px_14px_0_rgba(220,20,60,0.39)]
-                         hover:bg-[hsl(355,85%,35%)] hover:border-[hsl(355,85%,35%)] hover:shadow-[0_6px_20px_rgba(220,20,60,0.23)]
+                         /* LIGHT MODE: Black solid button */
+                         bg-zinc-900 text-white border-2 border-zinc-900
+                         shadow-[0_4px_14px_0_rgba(0,0,0,0.25)]
+                         hover:bg-zinc-800 hover:border-zinc-800 hover:shadow-[0_6px_20px_rgba(0,0,0,0.3)]
 
-                         /* DARK MODE */
-                         dark:bg-cyan-600 dark:text-white dark:border-cyan-600
-                         dark:shadow-[0_0_15px_rgba(6,182,212,0.5)]
-                         dark:hover:bg-cyan-500 dark:hover:border-cyan-500 dark:hover:shadow-[0_0_25px_rgba(6,182,212,0.7)]"
+                         /* DARK MODE: White solid button */
+                         dark:bg-white dark:text-zinc-900 dark:border-white
+                         dark:shadow-[0_4px_14px_0_rgba(255,255,255,0.15)]
+                         dark:hover:bg-zinc-200 dark:hover:border-zinc-200 dark:hover:shadow-[0_6px_20px_rgba(255,255,255,0.2)]"
             >
               <span className="relative z-10 flex items-center">
                 Dukung
