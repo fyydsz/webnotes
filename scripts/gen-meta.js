@@ -1,7 +1,7 @@
 // scripts/gen-meta.js
-const fs = require("fs");
-const path = require("path");
-const { execSync } = require("child_process");
+import fs from "fs";
+import path from "path";
+import { execSync } from "child_process";
 
 const rootDir = process.cwd();
 const metaFile = path.join(rootDir, "git-meta.json");
