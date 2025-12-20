@@ -14,25 +14,24 @@ function getMdxFiles(
     return fileList
   }
 
-  const files = fs.readdirSync(dir)
+  // Use withFileTypes to get file type info without additional stat calls
+  const entries = fs.readdirSync(dir, { withFileTypes: true })
 
-  files.forEach((file) => {
-    const filePath = path.join(dir, file)
-    const stat = fs.statSync(filePath)
+  for (const entry of entries) {
+    const filePath = path.join(dir, entry.name)
 
-    if (stat.isDirectory()) {
+    if (entry.isDirectory()) {
       getMdxFiles(filePath, fileList, rootDir)
-    } else {
-      if (file.endsWith('.mdx') || file.endsWith('.md')) {
-        // Create relative path from the root content folder and include mtime
-        const relativePath = path.relative(rootDir, filePath)
-        fileList.push({
-          relativePath,
-          lastModified: stat.mtime,
-        })
-      }
+    } else if (entry.name.endsWith('.mdx') || entry.name.endsWith('.md')) {
+      // Only call stat for files we actually need mtime from
+      const stat = fs.statSync(filePath)
+      const relativePath = path.relative(rootDir, filePath)
+      fileList.push({
+        relativePath,
+        lastModified: stat.mtime,
+      })
     }
-  })
+  }
 
   return fileList
 }
@@ -70,11 +69,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   })
 
+  const layoutPath = path.join(process.cwd(), 'app', 'layout.tsx')
   const staticRoutes = [
     {
       url: BASE_URL,
-      lastModified: fs.existsSync(path.join(process.cwd(), 'app', 'layout.tsx'))
-        ? fs.statSync(path.join(process.cwd(), 'app', 'layout.tsx')).mtime
+      lastModified: fs.existsSync(layoutPath)
+        ? fs.statSync(layoutPath).mtime
         : new Date(),
       changeFrequency: 'yearly' as const,
       priority: 1,

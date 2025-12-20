@@ -22,30 +22,24 @@ export const LastUpdated: FC<{
       .replace(/^\//, "")
       .replace(/\/$/, "");
 
-    // 2. Siapkan variabel untuk slug legacy (folder content biasa pakai 'index' untuk root)
+    // 2. Try App Router patterns first (most common case)
+    const appPrefix = `app/docs/${slug ? slug + "/" : ""}page`;
+    const found =
+      gitMeta[`${appPrefix}.mdx`] ||
+      gitMeta[`${appPrefix}.md`] ||
+      (slug && (gitMeta[`app/docs/${slug}.mdx`] || gitMeta[`app/docs/${slug}.md`]));
+
+    if (found) return found;
+
+    // 3. Fallback to legacy content folder patterns
     const legacySlug = slug === "" ? "index" : slug;
-
-    // 3. Susun kemungkinan lokasi file di git-meta.json
-    const possibleKeys = [
-      // --- Pola App Router (app/...) ---
-      // Menangani file page.mdx di dalam folder (misal: docs/kalkulus/page.mdx atau docs/page.mdx)
-      `app/docs/${slug ? slug + "/" : ""}page.mdx`,
-      `app/docs/${slug ? slug + "/" : ""}page.md`,
-
-      // Menangani file flat (misal: docs/kalkulus.mdx), hanya jika slug tidak kosong
-      ...(slug ? [`app/docs/${slug}.mdx`, `app/docs/${slug}.md`] : []),
-
-      // --- Pola Content Folder (Legacy/Fallback) ---
-      `content/${legacySlug}.mdx`,
-      `content/${legacySlug}.md`,
-      `content/${legacySlug}/index.mdx`,
-      `content/${legacySlug}/index.md`,
-    ];
-
-    // 4. Cari kunci yang cocok di data JSON
-    const foundKey = possibleKeys.find((key) => gitMeta[key]);
-
-    return foundKey ? gitMeta[foundKey] : null;
+    return (
+      gitMeta[`content/${legacySlug}.mdx`] ||
+      gitMeta[`content/${legacySlug}.md`] ||
+      gitMeta[`content/${legacySlug}/index.mdx`] ||
+      gitMeta[`content/${legacySlug}/index.md`] ||
+      null
+    );
   }, [pathname]);
 
   if (!dateStr) {
