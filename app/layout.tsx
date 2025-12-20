@@ -8,6 +8,7 @@ import { Banner, Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LastUpdated } from "@/components/last-updated";
+import SnowfallWrapper from "@/components/snowfall";
 
 // --- Konfigurasi Font (Dari Landing Page) ---
 const geistSans = Geist({
@@ -143,37 +144,39 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Layout
-          banner={
-            <Banner storageKey="support-campaign-01" dismissible={true}>
-              <span className="font-bold">Suka dengan catatan ini?</span>
-              <a
-                href="https://saweria.co/fyyy"
-                target="_blank"
-                rel="noreferrer"
-                className="ml-1 underline"
-              >
-                Dukung Fyy di sini
-              </a>
-              <span className="ml-1">🎁</span>
-            </Banner>
-          }
-          navbar={navbar}
-          pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/fyydsz/bukukampus/tree/master"
-          copyPageButton={false}
-          sidebar={{ toggleButton: true, defaultMenuCollapseLevel: 1 }}
-          lastUpdated={<LastUpdated />}
-          feedback={{
-            content: "Beri kami saran atau masukan",
-            labels: "feedback",
-          }}
-          editLink={"Edit halaman ini di Github"}
-          toc={{ backToTop: "Kembali ke atas", title: "Daftar Isi Halaman" }}
-        >
-          {children}
-          <Footer>{new Date().getFullYear()} © Buku Kampus.</Footer>
-        </Layout>
+        <SnowfallWrapper>
+          <Layout
+            banner={
+              <Banner storageKey="support-campaign-01" dismissible={true}>
+                <span className="font-bold">Suka dengan catatan ini?</span>
+                <a
+                  href="https://saweria.co/fyyy"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="ml-1 underline"
+                >
+                  Dukung Fyy di sini
+                </a>
+                <span className="ml-1">🎁</span>
+              </Banner>
+            }
+            navbar={navbar}
+            pageMap={await getPageMap()}
+            docsRepositoryBase="https://github.com/fyydsz/bukukampus/tree/master"
+            copyPageButton={false}
+            sidebar={{ toggleButton: true, defaultMenuCollapseLevel: 1 }}
+            lastUpdated={<LastUpdated />}
+            feedback={{
+              content: "Beri kami saran atau masukan",
+              labels: "feedback",
+            }}
+            editLink={"Edit halaman ini di Github"}
+            toc={{ backToTop: "Kembali ke atas", title: "Daftar Isi Halaman" }}
+          >
+            {children}
+            <Footer>{new Date().getFullYear()} © Buku Kampus.</Footer>
+          </Layout>
+        </SnowfallWrapper>
       </body>
     </html>
   );
