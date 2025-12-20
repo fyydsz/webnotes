@@ -1,0 +1,219 @@
+---
+title: Integral (Antiturunan)
+description: Pengertian integral, integral tak tentu, integral tentu, dan teknik substitusi dasar.
+---
+
+import { Callout } from 'nextra/components'
+import { Latex } from "@/components/latex"
+
+# 🔄 Integral (Antiturunan)
+
+**Integral** secara umum dikenal sebagai kebalikan (invers) dari turunan. Jika turunan menurunkan pangkat, maka integral "menaikkan" pangkat.
+
+---
+
+## 1. Rumus-Rumus Dasar
+
+### A. Aturan Pangkat (Power Rule)
+<Latex block>{`\\int ax^n \\, dx = a \\cdot \\frac{1}{n+1} x^{n+1} + C`}</Latex>
+
+---
+
+## 2. Contoh Soal (Step-by-Step)
+
+### Soal 1: Integral Konstanta
+Tentukan hasil dari <Latex>{`\\int 4 \\, dx`}</Latex>.
+
+**Penyelesaian:**
+Angka <Latex>{`4`}</Latex> kita ubah menjadi bentuk pangkat <Latex>{`x^0`}</Latex> agar bisa menggunakan rumus dasar:
+
+<Latex block>{`
+\\begin{aligned}
+\\int 4 \\, dx &= \\int 4x^0 \\, dx \\\\
+&= 4 \\cdot \\frac{1}{0+1} x^{0+1} + C \\\\
+&= 4 \\cdot \\frac{1}{1} x^1 + C \\\\
+&= 4x + C
+\\end{aligned}
+`}</Latex>
+
+### Soal 2: Integral Bentuk Pecahan
+Tentukan hasil dari <Latex>{`\\int \\frac{2}{x^2} \\, dx`}</Latex>.
+
+**Penyelesaian:**
+Jadikan satu kesatuan <Latex>{`2 \\cdot \\frac{1}{x^2}`}</Latex> lalu ubah menjadi pangkat negatif:
+
+<Latex block>{`
+\\begin{aligned}
+\\int \\frac{2}{x^2} \\, dx &= \\int 2x^{-2} \\, dx \\\\
+&= 2 \\cdot \\frac{1}{-2+1} x^{-2+1} + C \\\\
+&= 2 \\cdot \\frac{1}{-1} x^{-1} + C \\\\
+&= -2x^{-1} + C \\\\
+&= -\\frac{2}{x} + C
+\\end{aligned}
+`}</Latex>
+
+### Soal 3: Perkalian Polinomial
+Tentukan hasil dari <Latex>{`\\int (x-3)(x+3) \\, dx`}</Latex>.
+
+**Penyelesaian:**
+Kalikan terlebih dahulu fungsinya menggunakan selisih kuadrat <Latex>{`(a-b)(a+b) = a^2 - b^2`}</Latex>:
+
+<Latex block>{`
+\\begin{aligned}
+\\int (x-3)(x+3) \\, dx &= \\int (x^2 - 9) \\, dx \\\\
+&= \\frac{1}{2+1} x^{2+1} - 9x + C \\\\
+&= \\frac{1}{3} x^3 - 9x + C
+\\end{aligned}
+`}</Latex>
+
+### Soal 4: Polinomial Campuran
+Tentukan hasil dari <Latex>{`\\int (3x^2 - 4x + 5) \\, dx`}</Latex>.
+
+**Penyelesaian:**
+
+**Suku pertama:** <Latex>{`3 \\cdot \\frac{1}{2+1} x^{2+1} = x^3`}</Latex>
+
+**Suku kedua:** <Latex>{`-4 \\cdot \\frac{1}{1+1} x^{1+1} = -2x^2`}</Latex>
+
+**Suku ketiga:** <Latex>{`5 \\to 5x`}</Latex>
+
+**Hasil Akhir:**
+<Latex block>{`x^3 - 2x^2 + 5x + C`}</Latex>
+
+### Soal 5: Perkalian Polinomial Lanjut
+Tentukan hasil dari <Latex>{`\\int (4x^2 - 3x)(5x + 7) \\, dx`}</Latex>.
+
+**Penyelesaian:**
+Pertama, kita kalikan terlebih dahulu kedua kurung tersebut (distributif):
+
+<Latex block>{`
+\\begin{aligned}
+(4x^2 - 3x)(5x + 7) &= 4x^2(5x) + 4x^2(7) - 3x(5x) - 3x(7) \\\\
+&= 20x^3 + 28x^2 - 15x^2 - 21x \\\\
+&= 20x^3 + 13x^2 - 21x
+\\end{aligned}
+`}</Latex>
+
+Setelah fungsinya menjadi bentuk polinomial sederhana, kita integralkan satu per satu:
+
+<Latex block>{`
+\\begin{aligned}
+\\int (20x^3 + 13x^2 - 21x) \\, dx &= 20 \\cdot \\frac{1}{3+1} x^{3+1} + 13 \\cdot \\frac{1}{2+1} x^{2+1} - 21 \\cdot \\frac{1}{1+1} x^{1+1} + C \\\\
+&= 20 \\cdot \\frac{1}{4} x^4 + 13 \\cdot \\frac{1}{3} x^3 - 21 \\cdot \\frac{1}{2} x^2 + C \\\\
+&= 5x^4 + \\frac{13}{3}x^3 - \\frac{21}{2}x^2 + C
+\\end{aligned}
+`}</Latex>
+
+### Soal 6: Pangkat Pecahan
+Tentukan hasil dari <Latex>{`\\int \\frac{3}{7}x^{6/9} \\, dx`}</Latex>.
+
+**Penyelesaian:**
+Pertama, kita sederhanakan terlebih dahulu pangkat pecahannya agar lebih mudah dihitung. Pecahan <Latex>{`6/9`}</Latex> dapat disederhanakan menjadi <Latex>{`2/3`}</Latex>.
+
+<Latex block>{`
+\\int \\frac{3}{7}x^{2/3} \\, dx
+`}</Latex>
+
+Selanjutnya, gunakan aturan pangkat dengan <Latex>{`n = 2/3`}</Latex>. Ingat bahwa <Latex>{`n + 1`}</Latex> adalah <Latex>{`2/3 + 3/3 = 5/3`}</Latex>.
+
+<Latex block>{`
+\\begin{aligned}
+\\int \\frac{3}{7}x^{2/3} \\, dx &= \\frac{3}{7} \\cdot \\frac{1}{\\frac{5}{3}} x^{5/3} + C \\\\
+&= \\frac{3}{7} \\cdot \\frac{3}{5} x^{5/3} + C \\\\
+&= \\frac{9}{35} x^{5/3} + C
+\\end{aligned}
+`}</Latex>
+
+**Hasil Akhir:**
+Jika ingin dikembalikan ke bentuk akar, hasilnya adalah <Latex>{`\\frac{9}{35} \\sqrt[3]{x^5} + C`}</Latex>.
+
+### Soal 7: Pembagian Variabel (Pangkat Negatif)
+Tentukan hasil dari <Latex>{`\\int \\frac{7x^3}{6x^{10}} \\, dx`}</Latex>.
+
+**Penyelesaian:**
+Sederhanakan terlebih dahulu variabel <Latex>{`x`}</Latex> menggunakan aturan eksponen <Latex>{`\\frac{x^a}{x^b} = x^{a-b}`}</Latex>:
+
+<Latex block>{`
+\\begin{aligned}
+\\int \\frac{7x^3}{6x^{10}} \\, dx &= \\int \\frac{7}{6} x^{3-10} \\, dx \\\\
+&= \\int \\frac{7}{6} x^{-7} \\, dx
+\\end{aligned}
+`}</Latex>
+
+Setelah menjadi bentuk pangkat sederhana, gunakan aturan pangkat dengan <Latex>{`n = -7`}</Latex>. Maka <Latex>{`n + 1 = -7 + 1 = -6`}</Latex>:
+
+<Latex block>{`
+\\begin{aligned}
+\\int \\frac{7}{6} x^{-7} \\, dx &= \\frac{7}{6} \\cdot \\frac{1}{-6} x^{-6} + C \\\\
+&= -\\frac{7}{36} x^{-6} + C \\\\
+&= -\\frac{7}{36x^6} + C
+\\end{aligned}
+`}</Latex>
+
+**Hasil Akhir:**
+Hasil dari integral tersebut adalah <Latex>{`-\\frac{7}{36x^6} + C`}</Latex>.
+
+### Soal 8: Perkalian dan Pembagian Polinomial
+Tentukan hasil dari <Latex>{`\\int \\frac{(3x^2 - 8)(3x^2 + 8)}{12x^4} \\, dx`}</Latex>.
+
+**Penyelesaian:**
+Pertama, jabarkan bagian pembilang menggunakan rumus selisih kuadrat <Latex>{`(a-b)(a+b) = a^2 - b^2`}</Latex>, lalu bagi setiap suku dengan penyebutnya:
+
+<Latex block>{`
+\\begin{aligned}
+\\frac{(3x^2 - 8)(3x^2 + 8)}{12x^4} &= \\frac{(3x^2)^2 - 8^2}{12x^4} \\\\
+&= \\frac{9x^4 - 64}{12x^4} \\\\
+&= \\frac{9x^4}{12x^4} - \\frac{64}{12x^4} \\\\
+&= \\frac{3}{4} - \\frac{16}{3}x^{-4}
+\\end{aligned}
+`}</Latex>
+
+Sekarang, kita integralkan fungsi yang sudah sederhana tersebut satu per satu:
+
+<Latex block>{`
+\\begin{aligned}
+\\int \\left( \\frac{3}{4} - \\frac{16}{3}x^{-4} \\right) dx &= \\frac{3}{4}x - \\frac{16}{3} \\cdot \\frac{1}{-4+1} x^{-4+1} + C \\\\
+&= \\frac{3}{4}x - \\frac{16}{3} \\cdot \\frac{1}{-3} x^{-3} + C \\\\
+&= \\frac{3}{4}x + \\frac{16}{9}x^{-3} + C \\\\
+&= \\frac{3}{4}x + \\frac{16}{9x^3} + C
+\\end{aligned}
+`}</Latex>
+
+**Hasil Akhir:**
+Hasil akhir dari integral tersebut adalah <Latex>{`\\frac{3}{4}x + \\frac{16}{9x^3} + C`}</Latex>.
+
+---
+
+## 3. Integral Tentu (Definite Integral)
+
+Hitung nilai dari <Latex>{`\\int_{1}^{2} 4x^3 \\, dx`}</Latex>.
+
+**Penyelesaian:**
+
+1. Integralkan: <Latex>{`\\int 4x^3 \\, dx = x^4`}</Latex>.
+
+2. Masukkan batas atas dan batas bawah:
+
+<Latex block>{`
+\\begin{aligned}
+[x^4]_{1}^{2} &= (2^4) - (1^4) \\\\
+&= 16 - 1 \\\\
+&= 15
+\\end{aligned}
+`}</Latex>
+
+---
+
+## 4. Teknik Substitusi
+
+Digunakan jika terdapat fungsi di dalam fungsi. Contoh: <Latex>{`\\int (2x+3)^5 \\, dx`}</Latex>.
+
+Misalkan <Latex>{`u = 2x+3`}</Latex>, maka <Latex>{`dx = \\frac{du}{2}`}</Latex>.
+
+<Latex block>{`
+\\begin{aligned}
+\\int u^5 \\cdot \\frac{du}{2} &= \\frac{1}{2} \\int u^5 \\, du \\\\
+&= \\frac{1}{2} \\cdot \\frac{1}{6} u^6 + C \\\\
+&= \\frac{1}{12} (2x+3)^6 + C
+\\end{aligned}
+`}</Latex>
