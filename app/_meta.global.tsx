@@ -5,6 +5,8 @@ const BAHASA_INDONESIA: Record<string, string> = {
   paragraf: "",
   kalimat: "",
   karangan: "",
+  reproduksi_bacaan_notasi_ilmiah: "",
+  // ejaan_bahasa_indonesia: "",
 };
 
 const LOGIKA_MATEMATIKA: Record<string, string> = {
