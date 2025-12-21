@@ -5,6 +5,7 @@ import darkTheme from './public/syntax/dark.json' assert { type: 'json' }
 
 // Daftar mata kuliah yang tersedia di folder mata_kuliah
 const courses = [
+  'bahasa_indonesia',
   'dasar_pemrograman_python',
   'kalkulus',
   'logika_matematika',
@@ -14,6 +15,7 @@ const courses = [
 const programStudi = [
   'sistem_informasi',
   'teknik_informatika',
+  'general'
 ];
 
 // Generate rewrites untuk setiap kombinasi prodi dan course

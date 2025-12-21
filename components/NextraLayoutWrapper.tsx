@@ -196,14 +196,13 @@ export default function NextraLayoutWrapper({
     if (isInsideCoursePath && coursePathMatch) {
       const [, prodiName, activeCourse] = coursePathMatch;
 
-      // Find prodi node and general node in program_studi
+      // Find prodi node in program_studi
       let prodiNode: Record<string, unknown> | null = null;
-      let generalNode: Record<string, unknown> | null = null;
 
-      const findProdiAndGeneralForCourse = (nodes: unknown): void => {
+      const findProdiForCourse = (nodes: unknown): void => {
         if (!nodes || typeof nodes !== "object") return;
         if (Array.isArray(nodes)) {
-          nodes.forEach(findProdiAndGeneralForCourse);
+          nodes.forEach(findProdiForCourse);
           return;
         }
         const obj = nodes as Record<string, unknown>;
@@ -226,22 +225,16 @@ export default function NextraLayoutWrapper({
               ) {
                 prodiNode = child;
               }
-              if (
-                childName === "general" ||
-                childRoute === "/docs/program_studi/general"
-              ) {
-                generalNode = child;
-              }
             }
           }
         }
 
         if (Array.isArray(obj.children)) {
-          obj.children.forEach(findProdiAndGeneralForCourse);
+          obj.children.forEach(findProdiForCourse);
         }
       };
 
-      (cloned as Array<unknown>).forEach(findProdiAndGeneralForCourse);
+      (cloned as Array<unknown>).forEach(findProdiForCourse);
 
       // Build sidebar with all prodi courses + general courses
       const allCourseNodes: Array<Record<string, unknown>> = [];
@@ -287,26 +280,6 @@ export default function NextraLayoutWrapper({
         Array.isArray((prodiNode as Record<string, unknown>).children)
       ) {
         for (const child of (prodiNode as Record<string, unknown>)
-          .children as Array<Record<string, unknown>>) {
-          const courseName = (child.name ?? "").toString();
-          // Skip empty or invalid course names
-          if (!courseName) continue;
-
-          const isActive = courseName === activeCourse;
-          const courseNode = buildCourseNode(courseName, isActive, prodiName);
-          if (courseNode) {
-            allCourseNodes.push(courseNode);
-          }
-          // Don't use fallback - only use courses that exist in mata_kuliah
-        }
-      }
-
-      // Extract courses from general node (also available for this prodi)
-      if (
-        generalNode &&
-        Array.isArray((generalNode as Record<string, unknown>).children)
-      ) {
-        for (const child of (generalNode as Record<string, unknown>)
           .children as Array<Record<string, unknown>>) {
           const courseName = (child.name ?? "").toString();
           // Skip empty or invalid course names
