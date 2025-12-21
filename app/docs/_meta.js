@@ -8,15 +8,21 @@ const routes = {
   kontribusi: {
     title: "",
   },
-  separator: {
+  "#separator_materi": {
     type: "separator",
-    title: "Courses",
+    title: "Materi Pembelajaran",
   },
   general: {
     title: "General",
+    type: "page",
   },
   teknik_informatika: {
     title: "Teknik Informatika",
+    type: "page",
+  },
+  sistem_informasi: {
+    title: "Sistem Informasi",
+    type: "page",
   },
 };
 

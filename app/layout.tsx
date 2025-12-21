@@ -133,6 +133,13 @@ const navbar = (
   </Navbar>
 );
 
+const logPageMap = async () => {
+  const pageMap = await getPageMap();
+  console.log(JSON.stringify(pageMap, null, 2));
+};
+// Uncomment the following line to log the page map structure
+logPageMap();
+
 export default async function RootLayout({
   children,
 }: Readonly<{
