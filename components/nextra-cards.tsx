@@ -16,7 +16,10 @@ const Card: FC<{
       href={href}
       className={cn(
         "x:group",
-        "x:focus-visible:nextra-focus nextra-card x:flex x:flex-col x:justify-start x:overflow-hidden x:rounded-lg x:border x:border-gray-200",
+        "x:focus-visible:nextra-focus nextra-card x:flex x:flex-col x:overflow-hidden x:h-full x:rounded-lg x:border x:border-gray-200",
+        // Center vertically when there's no extra children content,
+        // otherwise keep the original top-aligned behavior.
+        children ? "x:justify-start" : "x:justify-center",
         "x:text-current x:no-underline x:dark:shadow-none",
         "x:hover:shadow-gray-100 x:dark:hover:shadow-none x:shadow-gray-100",
         "x:active:shadow-sm x:active:shadow-gray-200",
