@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "katex/dist/katex.min.css";
-import { Layout, Navbar } from "nextra-theme-docs";
+import { Navbar } from "nextra-theme-docs";
+import NextraLayoutWrapper from "@/components/NextraLayoutWrapper";
 import { Footer } from "./_components/footer/footer";
 import { Banner, Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { LastUpdated } from "@/components/last-updated";
 import SnowfallWrapper from "@/components/snowfall";
+import BreadcrumbFixer from "@/components/BreadcrumbFixer";
 
 // --- Konfigurasi Font (Dari Landing Page) ---
 const geistSans = Geist({
@@ -133,13 +134,6 @@ const navbar = (
   </Navbar>
 );
 
-const logPageMap = async () => {
-  const pageMap = await getPageMap();
-  console.log(JSON.stringify(pageMap, null, 2));
-};
-// Uncomment the following line to log the page map structure
-logPageMap();
-
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -151,8 +145,9 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <BreadcrumbFixer />
         <SnowfallWrapper>
-          <Layout
+          <NextraLayoutWrapper
             banner={
               <Banner storageKey="support-campaign-01" dismissible={true}>
                 <span className="font-bold">Suka dengan catatan ini?</span>
@@ -168,11 +163,10 @@ export default async function RootLayout({
               </Banner>
             }
             navbar={navbar}
-            pageMap={await getPageMap()}
+            pageMap={await getPageMap("/")}
             docsRepositoryBase="https://github.com/fyydsz/bukukampus/tree/master"
             copyPageButton={false}
             sidebar={{ toggleButton: true, defaultMenuCollapseLevel: 1 }}
-            lastUpdated={<LastUpdated />}
             feedback={{
               content: "Beri kami saran atau masukan",
               labels: "feedback",
@@ -182,7 +176,7 @@ export default async function RootLayout({
           >
             {children}
             <Footer>{new Date().getFullYear()} © Buku Kampus.</Footer>
-          </Layout>
+          </NextraLayoutWrapper>
         </SnowfallWrapper>
       </body>
     </html>
