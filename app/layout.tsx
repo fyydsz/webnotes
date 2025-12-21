@@ -9,6 +9,7 @@ import { getPageMap } from "nextra/page-map";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LastUpdated } from "@/components/last-updated";
 import SnowfallWrapper from "@/components/snowfall";
+import { injectSharedCourses } from "@/lib/page-map-utils";
 
 // --- Konfigurasi Font (Dari Landing Page) ---
 const geistSans = Geist({
@@ -135,7 +136,8 @@ const navbar = (
 
 const logPageMap = async () => {
   const pageMap = await getPageMap();
-  console.log(JSON.stringify(pageMap, null, 2));
+  const modifiedPageMap = injectSharedCourses(pageMap);
+  console.log(JSON.stringify(modifiedPageMap, null, 2));
 };
 // Uncomment the following line to log the page map structure
 logPageMap();
@@ -145,6 +147,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pageMap = await getPageMap();
+  const modifiedPageMap = injectSharedCourses(pageMap);
+  
   return (
     <html lang="id" dir="ltr" suppressHydrationWarning>
       <Head />
@@ -168,7 +173,7 @@ export default async function RootLayout({
               </Banner>
             }
             navbar={navbar}
-            pageMap={await getPageMap()}
+            pageMap={modifiedPageMap}
             docsRepositoryBase="https://github.com/fyydsz/bukukampus/tree/master"
             copyPageButton={false}
             sidebar={{ toggleButton: true, defaultMenuCollapseLevel: 1 }}
