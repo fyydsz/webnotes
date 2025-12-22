@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | Buku Kampus",
   },
   description:
-    "Digital Garden & Dokumentasi pribadi M.Raffi Pra Diestyawan. Catatan belajar pemrograman, kalkulus, dan bahasa Indonesia.",
+    "Kumpulan catatan kuliah. Ditulis dengan format yang rapi, mudah dibaca, dan terstruktur.",
   applicationName: "Buku Kampus",
   authors: [
     { name: "M.Raffi Pra Diestyawan", url: "https://github.com/fyydsz" },
@@ -52,9 +52,9 @@ export const metadata: Metadata = {
     locale: "id_ID",
     url: BASE_URL,
     siteName: "Buku Kampus",
-    title: "Buku Kampus - Catatan Belajar Terstruktur",
+    title: "Buku Kampus - Catatan Belajar, Disimpan Rapi",
     description:
-      "Kumpulan materi kuliah dan tutorial koding yang disusun rapi.",
+      "Kumpulan catatan kuliah. Ditulis dengan format yang rapi, mudah dibaca, dan terstruktur.",
     images: [
       {
         url: "/image.png",
@@ -66,8 +66,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Buku Kampus",
-    description: "Catatan belajar dan dokumentasi kuliah.",
+    title: "Buku Kampus - Catatan Belajar, Disimpan Rapi",
+    description:
+      "Kumpulan catatan kuliah yang rapi, mudah dibaca, dan terstruktur.",
     creator: "@fyydsz_",
     images: ["/image.png"],
   },
