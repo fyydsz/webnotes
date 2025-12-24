@@ -13,13 +13,51 @@ type SidebarOption = {
   [k: string]: unknown;
 };
 
+// Deep clone helper that preserves React elements (returns React elements as-is)
+// This avoids breaking React elements stored in pageMap/title when cloning via JSON.stringify
+const deepClonePreserveReact = (
+  value: unknown,
+  seen = new WeakMap<object, unknown>(),
+): unknown => {
+  if (value === null || typeof value !== "object") return value;
+
+  // Detect and preserve React elements (they usually have $$typeof or type & props)
+  const asObj = value as Record<string, unknown>;
+  if (
+    Object.prototype.hasOwnProperty.call(asObj, "$$typeof") ||
+    ("props" in asObj && "type" in asObj)
+  ) {
+    return value;
+  }
+
+  if (seen.has(value as object)) return seen.get(value as object) as unknown;
+
+  if (Array.isArray(value)) {
+    const arrResult: unknown[] = [];
+    seen.set(value as object, arrResult);
+    const source = value as unknown[];
+    for (let i = 0; i < source.length; i++) {
+      arrResult[i] = deepClonePreserveReact(source[i], seen);
+    }
+    return arrResult;
+  }
+
+  const clonedObj: Record<string, unknown> = {};
+  seen.set(value as object, clonedObj);
+  const sourceObj = value as Record<string, unknown>;
+  for (const key of Object.keys(sourceObj)) {
+    clonedObj[key] = deepClonePreserveReact(sourceObj[key], seen);
+  }
+  return clonedObj;
+};
+
 // Helper function to deep clone and transform routes
 const transformRoutes = (
   node: Record<string, unknown>,
   fromBase: string,
   toBase: string,
 ): Record<string, unknown> => {
-  const cloned = JSON.parse(JSON.stringify(node)) as Record<string, unknown>;
+  const cloned = deepClonePreserveReact(node) as Record<string, unknown>;
 
   const transform = (obj: unknown): void => {
     if (!obj || typeof obj !== "object") return;
@@ -66,8 +104,8 @@ export default function NextraLayoutWrapper({
   const filteredPageMap = useMemo((): LayoutPageMap => {
     const pm = pageMap ?? [];
 
-    // clone to avoid mutating original
-    const cloned = JSON.parse(JSON.stringify(pm)) as LayoutPageMap;
+    // clone to avoid mutating original (preserve React elements)
+    const cloned = deepClonePreserveReact(pm) as LayoutPageMap;
 
     // Helper: recursively remove any `children` properties in a node/subtree
     const removeChildrenRecursively = (node: unknown): boolean => {
@@ -498,7 +536,7 @@ export default function NextraLayoutWrapper({
         try {
           console.log(
             "[NextraLayoutWrapper] cleanup applied (docs-like/program_studi path)",
-            JSON.parse(JSON.stringify(cloned)),
+            cloned,
           );
         } catch {
           // ignore stringify issues
