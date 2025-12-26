@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="flex min-h-[calc(100vh-var(--nextra-navbar-height))] justify-center items-center md:items-start overflow-hidden bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 md:pt-48">
-      <main className="flex flex-col items-center space-y-4 text-center xl:items-start xl:text-left max-w-6xl w-full">
+    <div className="flex min-h-[calc(100vh-var(--nextra-navbar-height))] justify-center overflow-hidden bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 pt-12 md:pt-32 pb-20">
+      <main className="flex flex-col items-center space-y-4 text-center xl:items-start xl:text-left max-w-6xl py-8 w-full">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-900/50 px-4 py-1.5 backdrop-blur-sm transition-all hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 cursor-default">
           <span className="relative flex h-2 w-2">

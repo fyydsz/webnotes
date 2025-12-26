@@ -1,0 +1,137 @@
+---
+title: Percabangan (If-Else)
+description: Belajar membuat program yang bisa mengambil keputusan menggunakan If, Else, dan Elif.
+prodi: [teknik_informatika, sistem_informasi]
+---
+
+import { Callout } from "nextra/components";
+
+
+# 🔀 Percabangan (Conditional Statement)
+
+Dalam kehidupan sehari-hari, kita sering dihadapkan pada pilihan.
+* "Jika hujan, maka saya bawa payung."
+* "Jika lapar, maka saya makan."
+
+Di dunia pemrograman, konsep ini disebut **Percabangan** atau **Conditional Statement**. Kita menggunakan kata kunci `if` untuk menyuruh komputer berpikir dan mengambil keputusan berdasarkan kondisi tertentu.
+
+## 1. Operator Perbandingan
+
+Sebelum masuk ke `if`, kita harus tahu dulu cara membandingkan dua nilai. Hasil dari perbandingan ini selalu bernilai **Boolean** (`True` atau `False`).
+
+| Operator | Arti | Contoh | Hasil |
+| :---: | :--- | :--- | :--- |
+| `==` | Sama dengan | `5 == 5` | `True` |
+| `!=` | Tidak sama dengan | `5 != 3` | `True` |
+| `>` | Lebih besar | `10 > 5` | `True` |
+| `<` | Lebih kecil | `3 < 8` | `True` |
+| `>=` | Lebih besar sama dengan | `5 >= 5` | `True` |
+| `<=` | Lebih kecil sama dengan | `4 <= 5` | `True` |
+
+## 2. Struktur Dasar: IF
+
+Pernyataan `if` digunakan untuk mengeksekusi kode **hanya jika** kondisinya bernilai **Benar (True)**.
+
+```python filename="if_dasar.py"
+usia = 20
+
+# Cek apakah usia lebih dari 10
+if usia > 10:
+    # Bagian ini hanya jalan jika kondisi Benar
+    print("Kamu sudah besar!") 
+
+print("Program selesai.")
+```
+
+<Callout type="warning" emoji="⚠️">
+  **Ingat Indentasi!** Python menggunakan **spasi/tab** untuk menandai blok kode. Baris `print("Kamu sudah besar!")` menjorok ke dalam artinya ia adalah bagian dari `if`.
+</Callout>
+
+## 3. IF - ELSE
+
+Bagaimana jika kondisinya Salah? Kita gunakan `else` untuk menangani kondisi sebaliknya.
+
+```python filename="if_else.py"
+waktu = "malam"
+
+if waktu == "pagi":
+    print("Selamat Pagi! Jangan lupa sarapan.")
+else:
+    # Dijalankan jika waktu BUKAN "pagi"
+    print("Halo! Selamat beristirahat.")
+```
+
+## 4. IF - ELIF - ELSE (Banyak Kondisi)
+
+Jika pilihannya lebih dari dua, kita gunakan `elif` (singkatan dari *else if*). Komputer akan mengecek kondisi satu per satu dari atas ke bawah.
+
+```python filename="nilai_siswa.py"
+nilai = 82
+
+if nilai > 90:
+    print("Grade A - Luar Biasa!")
+elif nilai > 80:
+    print("Grade B+ - Bagus Sekali!")
+elif nilai > 70:
+    print("Grade B - Bagus!")
+else:
+    print("Grade F - Belajar lagi ya.")
+```
+
+## 5. Operator Logika (AND, OR)
+
+Terkadang satu syarat saja tidak cukup. Kita bisa menggabungkan beberapa kondisi menggunakan **Operator Logika**.
+
+### Operator AND
+Bernilai `True` jika **SEMUA** kondisi benar.  
+Contoh: "Lulus jika nilai > 70 **DAN** absen < 3"
+
+```python filename="logika_and.py"
+nilai = 75
+absen = 2
+
+if nilai > 70 and absen < 3:
+    print("Selamat, Anda Lulus!")
+else:
+    print("Maaf, Anda belum lulus.")
+```
+
+### Operator OR
+Bernilai `True` jika **SALAH SATU** kondisi benar.  
+Contoh: "Boleh masuk jika punya tiket VIP **ATAU** kenal panitia"
+
+```python filename="logika_or.py"
+tiket = "Reguler"
+kenalan_panitia = True
+
+if tiket == "VIP" or kenalan_panitia == True:
+    print("Silakan masuk!")
+else:
+    print("Dilarang masuk.")
+```
+
+### Studi Kasus: Penerimaan Karyawan
+
+Mari kita buat program seleksi sederhana.
+* **Perempuan**: Usia 18–25 tahun, Skor minimal 70.  
+* **Laki-laki**: Usia 25–35 tahun, Skor minimal 80.
+
+```python filename="seleksi_kerja.py"
+print("=== SELEKSI KARYAWAN ===")
+jenis_kelamin = input("Jenis Kelamin (L/P): ")
+usia = int(input("Masukkan Usia: "))
+skor = int(input("Masukkan Skor: "))
+
+if jenis_kelamin == "P":
+    if usia >= 18 and usia <= 25 and skor >= 70:
+         print("Selamat, Anda Diterima (Kandidat Wanita).")
+    else:
+         print("Maaf, kualifikasi belum sesuai.")
+elif jenis_kelamin == "L":
+    if usia >= 25 and usia <= 35 and skor >= 80:
+         print("Selamat, Anda Diterima (Kandidat Pria).")
+    else:
+         print("Maaf, kualifikasi belum sesuai.")
+else:
+    print("Jenis kelamin tidak dikenali.")
+```

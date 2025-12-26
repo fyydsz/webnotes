@@ -1,0 +1,65 @@
+---
+title: Ekuivalensi Logis
+description: Konsep dua proposisi majemuk yang memiliki nilai kebenaran yang sama, cara pembuktiannya dengan tabel kebenaran, dan contoh-contohnya.
+prodi: [teknik_informatika, sistem_informasi]
+---
+
+import { Callout } from 'nextra/components'
+import { Latex } from "@/components/latex"
+
+# 🧮 Ekuivalensi Logis
+**Ekuivalensi Logis** adalah kondisi di mana dua buah proposisi majemuk, meskipun memiliki susunan kata atau struktur (sintaksis) yang berbeda, menghasilkan **nilai kebenaran** yang identik pada setiap kemungkinan kasus.
+
+Kedua proposisi tersebut dikatakan memiliki **makna logis yang sama**.
+
+## Definisi & Notasi
+Dua proposisi, misalnya <Latex>P</Latex> dan <Latex>Q</Latex>, dinyatakan ekuivalen jika dan hanya jika kolom nilai kebenaran akhir pada tabel kebenaran mereka sama persis.
+
+Ekuivalensi Logis disimbolkan dengan:
+
+<Latex block>P \equiv Q</Latex>
+
+<Callout type="info" emoji="ℹ️">
+  Ekuivalensi antara <Latex>P</Latex> dan <Latex>Q</Latex> ( <Latex>P \equiv Q</Latex> ) juga berarti proposisi bikondisional <Latex>P \leftrightarrow Q</Latex> merupakan **Tautologi** (selalu benar).
+</Callout>
+
+## Membuktikan Ekuivalensi dengan Tabel Kebenaran
+
+### Contoh 1: Ekuivalensi Disjungsi  
+Buktikan bahwa <Latex>p \vee q</Latex> ekuivalen dengan <Latex>\neg(\neg p \wedge \neg q)</Latex>.
+
+| <Latex>p</Latex> | <Latex>q</Latex> | <Latex>p \vee q</Latex> | <Latex>\neg p</Latex> | <Latex>\neg q</Latex> | <Latex>\neg p \wedge \neg q</Latex> | <Latex>\neg(\neg p \wedge \neg q)</Latex> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| T | T | **T** | F | F | F | **T** |
+| T | F | **T** | F | T | F | **T** |
+| F | T | **T** | T | F | F | **T** |
+| F | F | **F** | T | T | T | **F** |
+
+**Kesimpulan:** Karena kolom <Latex>p \vee q</Latex> dan <Latex>\neg(\neg p \wedge \neg q)</Latex> identik (T, T, T, F), maka keduanya ekuivalen.
+
+### Contoh 2: Ekuivalensi Implikasi
+
+Misalkan <Latex>A</Latex> = Anda tidak belajar, dan <Latex>B</Latex> = Anda gagal.  
+Ekspresi: <Latex>A \to B \equiv \neg A \vee B</Latex>
+
+| <Latex>A</Latex> | <Latex>B</Latex> | <Latex>A \to B</Latex> | <Latex>\neg A</Latex> | <Latex>\neg A \vee B</Latex> |
+| :---: | :---: | :---: | :---: | :---: |
+| F | F | **T** | T | **T** |
+| F | T | **T** | T | **T** |
+| T | F | **F** | F | **F** |
+| T | T | **T** | F | **T** |
+
+**Kesimpulan:** Kolom <Latex>A \to B</Latex> dan <Latex>\neg A \vee B</Latex> identik.
+
+### Contoh 3: Ekuivalensi Kontraposisi
+
+Dengan <Latex>A</Latex> = Bedu sekolah, <Latex>B</Latex> = Bedu pandai.
+
+| <Latex>A</Latex> | <Latex>B</Latex> | <Latex>\neg A</Latex> | <Latex>\neg B</Latex> | <Latex>\neg A \to \neg B</Latex> | <Latex>B \to A</Latex> |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| F | F | T | T | **T** | **T** |
+| F | T | T | F | **F** | **F** |
+| T | F | F | T | **T** | **T** |
+| T | T | F | F | **T** | **T** |
+
+**Kesimpulan:** Kolom <Latex>\neg A \to \neg B</Latex> dan <Latex>B \to A</Latex> identik.

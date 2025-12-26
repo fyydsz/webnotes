@@ -1,0 +1,216 @@
+---
+title: Modulus (Nilai Mutlak)
+description: Konsep jarak, rumus modulus, sifat-sifat modulus, dan penyelesaian soal bilangan kompleks
+prodi: [teknik_informatika, sistem_informasi]
+---
+
+import { Callout } from 'nextra/components'
+import { Latex } from "@/components/latex"
+
+# 📏 Modulus (Nilai Mutlak)
+
+**Modulus** adalah metode untuk menghitung "jarak" suatu bilangan dari titik pusat (0). Konsep ini sangat penting dalam memahami sifat geometris bilangan kompleks. 
+
+---
+
+## 1. Pengertian Modulus
+
+### 1.1 Definisi Geometris
+
+| Jenis Bilangan | Interpretasi Modulus |
+|----------------|---------------------|
+| **Bilangan Real** | Jarak linier dari 0 (mengubah negatif menjadi positif) |
+| **Bilangan Kompleks** | Panjang hipotenusa dari segitiga siku-siku pada bidang kompleks |
+
+Pada **Bilangan Kompleks** <Latex>{`z = x + yi`}</Latex>, modulus merepresentasikan jarak dari titik asal (0,0) ke titik (x, y) pada bidang kompleks. 
+
+### 1.2 Visualisasi pada Bidang Kompleks
+
+```
+Imajiner (y)
+    ↑
+    |       • z = x + yi
+    |      /|
+    |     / |
+    |    /  | y (bagian imajiner)
+    |   /   |
+    |  /    |
+    | / |z| |
+    |/______|________→ Real (x)
+   O    x (bagian real)
+```
+
+Modulus <Latex>{`|z|`}</Latex> adalah panjang garis dari O ke titik z. 
+
+---
+
+## 2. Rumus Modulus
+
+### 2.1 Rumus Umum
+
+Karena merepresentasikan jarak, kita menggunakan **Teorema Pythagoras**: 
+
+<Latex block>{`|z| = \\sqrt{Re^2 + Im^2} = \\sqrt{x^2 + y^2}`}</Latex>
+
+Dimana:
+- <Latex>{`Re = x`}</Latex> = bagian real
+- <Latex>{`Im = y`}</Latex> = bagian imajiner
+
+### 2.2 Sifat-Sifat Modulus
+
+| Sifat | Rumus |
+|-------|-------|
+| Non-negatif | <Latex>{` \\vert z \\vert  \\geq 0`}</Latex> |
+| Perkalian | <Latex>{` \\vert z_1 \\cdot z_2 \\vert  =  \\vert z_1 \\vert  \\cdot  \\vert z_2 \\vert `}</Latex> |
+| Pembagian | <Latex>{`\\left \\vert \\frac{z_1}{z_2} \\right \\vert  = \\frac{ \\vert z_1 \\vert }{ \\vert z_2 \\vert }`}</Latex> |
+| Konjugat | <Latex>{` \\vert z \\vert  =  \\vert \\bar{z} \\vert `}</Latex> |
+| Segitiga | <Latex>{` \\vert z_1 + z_2 \\vert  \\leq  \\vert z_1 \\vert  +  \\vert z_2 \\vert `}</Latex> |
+
+---
+
+## 3. Contoh Soal dan Pembahasan
+
+### Kasus 1: Bilangan Kompleks Standar
+
+**Soal:** Tentukan modulus dari <Latex>{`z = 3 - 4i`}</Latex>!
+
+**Penyelesaian:**
+
+**Langkah 1:** Identifikasi bagian real dan imajiner
+- <Latex>{`Re = 3`}</Latex>
+- <Latex>{`Im = -4`}</Latex>
+
+**Langkah 2:** Gunakan rumus modulus
+
+<Latex block>{`
+  \\begin{aligned}
+  |z| &= \\sqrt{Re^2 + Im^2} \\\\[8pt]
+  &= \\sqrt{3^2 + (-4)^2} \\\\[8pt]
+  &= \\sqrt{9 + 16} \\\\[8pt]
+  &= \\sqrt{25} \\\\[8pt]
+  &= 5
+  \\end{aligned}
+`}</Latex>
+
+<Callout type="info" emoji="💡">
+  **Catatan:** Triple Pythagoras (3, 4, 5) sering muncul dalam soal modulus! 
+</Callout>
+
+---
+
+### Kasus 2: Modulus dari Hasil Pembagian
+
+**Soal:** Hitunglah modulus dari: 
+
+<Latex block>{`\\left| \\frac{3+7i}{2-10i} \\right|`}</Latex>
+
+**Penyelesaian:**
+
+**Strategi:** Ada dua cara untuk menyelesaikan soal ini: 
+1. Sederhanakan pembagian dulu, lalu hitung modulus
+2. Gunakan sifat modulus:  <Latex>{`\\left|\\frac{z_1}{z_2}\\right| = \\frac{|z_1|}{|z_2|}`}</Latex>
+
+**Cara 1: Sederhanakan Dulu**
+
+**Langkah 1:** Kalikan dengan konjugat penyebut
+
+<Latex block>{`
+  \\begin{aligned}
+  \\frac{3+7i}{2-10i} \\cdot \\frac{2+10i}{2+10i} &= \\frac{6 + 30i + 14i + 70i^2}{2^2 + 10^2} \\\\[8pt]
+  &= \\frac{6 + 44i - 70}{4 + 100} \\\\[8pt]
+  &= \\frac{-64 + 44i}{104}
+  \\end{aligned}
+`}</Latex>
+
+**Langkah 2:** Pecahkan menjadi bagian Real dan Imajiner
+
+- <Latex>{`Re = \\frac{-64}{104} = -\\frac{8}{13}`}</Latex>
+- <Latex>{`Im = \\frac{44}{104} = \\frac{11}{26}`}</Latex>
+
+**Langkah 3:** Masukkan ke rumus modulus
+
+<Latex block>{`
+  \\begin{aligned}
+  |z| &= \\sqrt{\\left(-\\frac{8}{13}\\right)^2 + \\left(\\frac{11}{26}\\right)^2} \\\\[8pt]
+  &= \\sqrt{\\frac{64}{169} + \\frac{121}{676}} \\\\[8pt]
+  &= \\sqrt{\\frac{256}{676} + \\frac{121}{676}} \\quad \\text{(Samakan penyebut)} \\\\[8pt]
+  &= \\sqrt{\\frac{377}{676}} \\\\[8pt]
+  &= \\frac{\\sqrt{377}}{26}
+  \\end{aligned}
+`}</Latex>
+
+---
+
+### Kasus 3: Pembuktian Sifat Modulus Perkalian
+
+**Soal:** Buktikan bahwa <Latex>{`|z_1 \\cdot z_2| = |z_1| \\cdot |z_2|`}</Latex> untuk: 
+- <Latex>{`z_1 = 2 - 8i`}</Latex>
+- <Latex>{`z_2 = 8 - 2i`}</Latex>
+
+**Penyelesaian:**
+
+**Ruas Kiri:  <Latex>{`|z_1 \\cdot z_2|`}</Latex>**
+
+**Langkah 1:** Kalikan kedua bilangan kompleks
+
+<Latex block>{`
+  \\begin{aligned}
+  z_1 \\cdot z_2 &= (2 - 8i)(8 - 2i) \\\\[8pt]
+  &= 16 - 4i - 64i + 16i^2 \\\\[8pt]
+  &= 16 - 68i + 16(-1) \\\\[8pt]
+  &= 16 - 16 - 68i \\\\[8pt]
+  &= 0 - 68i \\\\[8pt]
+  &= -68i
+  \\end{aligned}
+`}</Latex>
+
+**Langkah 2:** Hitung modulusnya
+
+<Latex block>{`
+  |z_1 \\cdot z_2| = \\sqrt{0^2 + (-68)^2} = \\sqrt{4624} = \\mathbf{68}
+`}</Latex>
+
+---
+
+**Ruas Kanan: <Latex>{`|z_1| \\cdot |z_2|`}</Latex>**
+
+**Langkah 1:** Hitung modulus masing-masing
+
+<Latex block>{`
+  \\begin{aligned}
+  |z_1| &= \\sqrt{2^2 + (-8)^2} = \\sqrt{4 + 64} = \\sqrt{68} \\\\[8pt]
+  |z_2| &= \\sqrt{8^2 + (-2)^2} = \\sqrt{64 + 4} = \\sqrt{68}
+  \\end{aligned}
+`}</Latex>
+
+**Langkah 2:** Kalikan kedua hasil
+
+<Latex block>{`
+  |z_1| \\cdot |z_2| = \\sqrt{68} \\cdot \\sqrt{68} = 68 = \\mathbf{68}
+`}</Latex>
+
+<Callout type="info" emoji="✅">
+  **Terbukti! ** Hasil ruas kiri sama dengan ruas kanan (<Latex>{`68 = 68`}</Latex>).
+</Callout>
+
+---
+
+## 4. Ringkasan
+
+### Rumus Penting
+
+| Rumus | Keterangan |
+|-------|------------|
+| <Latex>{` \\vert z \\vert  = \\sqrt{x^2 + y^2}`}</Latex> | Modulus bilangan kompleks <Latex>{`z = x + yi`}</Latex> |
+| <Latex>{` \\vert z_1 \\cdot z_2 \\vert  =  \\vert z_1 \\vert  \\cdot  \\vert z_2 \\vert `}</Latex> | Sifat perkalian |
+| <Latex>{`\\left \\vert \\frac{z_1}{z_2}\\right \\vert  = \\frac{ \\vert z_1 \\vert }{ \\vert z_2 \\vert }`}</Latex> | Sifat pembagian |
+
+---
+
+## 💡 Tips Mengerjakan Soal
+
+> **Gunakan sifat modulus!** Untuk soal perkalian/pembagian, kadang lebih mudah menghitung modulus masing-masing bilangan terlebih dahulu. 
+
+> **Perhatikan Triple Pythagoras!** Angka-angka seperti (3,4,5), (5,12,13), (8,15,17) sering muncul dalam soal modulus.
+
+> **Samakan penyebut dengan hati-hati!** Saat menjumlahkan pecahan dalam perhitungan modulus, pastikan penyebut sudah sama.

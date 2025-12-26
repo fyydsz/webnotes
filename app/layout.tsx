@@ -3,13 +3,13 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "katex/dist/katex.min.css";
 import { Navbar } from "nextra-theme-docs";
-import NextraLayoutWrapper from "@/components/NextraLayoutWrapper";
+import NextraLayoutWrapper from "../components/nextra-layout-wrapper";
 import { Footer } from "./_components/footer/footer";
 import { Banner, Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { connection } from "next/server";
 import SnowfallWrapper from "@/components/snowfall";
-import BreadcrumbFixer from "@/components/BreadcrumbFixer";
 
 // --- Konfigurasi Font (Dari Landing Page) ---
 const geistSans = Geist({
@@ -140,13 +140,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await connection();
+  const pageMap = await getPageMap();
   return (
     <html lang="id" dir="ltr" suppressHydrationWarning>
       <Head />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <BreadcrumbFixer />
         <SnowfallWrapper>
           <NextraLayoutWrapper
             banner={
@@ -164,7 +165,7 @@ export default async function RootLayout({
               </Banner>
             }
             navbar={navbar}
-            pageMap={await getPageMap("/")}
+            pageMap={pageMap}
             docsRepositoryBase="https://github.com/fyydsz/bukukampus/tree/master"
             copyPageButton={false}
             sidebar={{ toggleButton: true, defaultMenuCollapseLevel: 1 }}

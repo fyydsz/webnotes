@@ -1,0 +1,176 @@
+---
+title: Hukum-Hukum Logika
+description: Daftar lengkap hukum aljabar proposisi beserta penjelasan dan contohnya.
+prodi: [teknik_informatika, sistem_informasi]
+---
+
+import { Callout } from 'nextra/components'
+import { Latex } from "@/components/latex"
+
+# 📜 Hukum-Hukum Logika
+
+Hukum-hukum logika atau **Hukum Aljabar Proposisi** adalah aturan ekuivalensi yang digunakan untuk memanipulasi dan menyederhanakan ekspresi logika. Berikut adalah daftar hukum beserta penjelasannya:
+
+## 1. Hukum Identitas
+Hukum ini menyatakan bahwa suatu proposisi tidak akan berubah nilai kebenarannya jika dioperasikan dengan elemen identitasnya (Benar untuk $\wedge$, Salah untuk $\vee$).
+
+<Latex block>{`
+  \\begin{aligned}
+  p \\wedge \\mathbf{T} &\\equiv p \\\\
+  p \\vee \\mathbf{F} &\\equiv p
+  \\end{aligned}
+`}</Latex>
+
+**Penjelasan:**
+* Sesuatu yang **DAN** "Benar" hasilnya tergantung sesuatu itu sendiri.
+* Sesuatu yang **ATAU** "Salah" hasilnya tergantung sesuatu itu sendiri.
+
+## 2. Hukum Dominasi
+Suatu proposisi akan "didominasi" atau tertutup oleh nilai kebenaran mutlak tertentu.
+
+<Latex block>{`
+  \\begin{aligned}
+  p \\vee \\mathbf{T} &\\equiv \\mathbf{T} \\\\
+  p \\wedge \\mathbf{F} &\\equiv \\mathbf{F}
+  \\end{aligned}
+`}</Latex>
+
+**Penjelasan:**
+* Apapun jika di-**ATAU**-kan dengan "Benar", hasilnya pasti Benar.
+* Apapun jika di-**DAN**-kan dengan "Salah", hasilnya pasti Salah.
+
+## 3. Hukum Idempoten 
+Operasi logika terhadap variabel yang sama akan menghasilkan variabel itu sendiri.
+
+<Latex block>{`
+  \\begin{aligned}
+  p \\vee p &\\equiv p \\\\
+  p \\wedge p &\\equiv p
+  \\end{aligned}
+`}</Latex>
+
+**Contoh:**
+"Saya lapar **atau** saya lapar" $\equiv$ "Saya lapar".
+
+## 4. Hukum Negasi Ganda
+Negasi dari suatu negasi adalah bentuk aslinya.
+
+<Latex block>{`\\neg(\\neg p) \\equiv p`}</Latex>
+
+**Contoh:**
+"**Tidak** benar bahwa saya **tidak** makan" $\equiv$ "Saya makan".
+
+## 5. Hukum Komutatif
+Urutan proposisi dalam operasi konjungsi atau disjungsi tidak mempengaruhi hasil (bisa ditukar tempat).
+
+<Latex block>{`
+  \\begin{aligned}
+  p \\vee q &\\equiv q \\vee p \\\\
+  p \\wedge q &\\equiv q \\wedge p
+  \\end{aligned}
+`}</Latex>
+
+**Contoh:**
+"Apel **dan** Jeruk" sama saja dengan "Jeruk **dan** Apel".
+
+## 6. Hukum Asosiatif
+Pengelompokan (tanda kurung) pada operasi yang *sama* tidak mempengaruhi hasil.
+
+<Latex block>{`
+  \\begin{aligned}
+  (p \\vee q) \\vee r &\\equiv p \\vee (q \\vee r) \\\\
+  (p \\wedge q) \\wedge r &\\equiv p \\wedge (q \\wedge r)
+  \\end{aligned}
+`}</Latex>
+
+## 7. Hukum Distributif
+Hukum ini digunakan untuk menyebarkan satu operator ke dalam kurung operator lain (mirip perkalian terhadap penjumlahan: $a(b+c) = ab + ac$).
+
+<Latex block>{`
+  \\begin{aligned}
+  p \\vee (q \\wedge r) &\\equiv (p \\vee q) \\wedge (p \\vee r) \\\\
+  p \\wedge (q \\vee r) &\\equiv (p \\wedge q) \\vee (p \\wedge r)
+  \\end{aligned}
+`}</Latex>
+
+**Contoh:**
+"Saya makan **DAN** (Roti **ATAU** Nasi)" $\equiv$ "(Saya makan Roti) **ATAU** (Saya makan Nasi)".
+
+## 8. Hukum De Morgan
+Hukum ini sangat penting untuk menangani negasi pada tanda kurung. Ingat prinsip: **Negasi masuk, operator berbalik**.
+
+<Latex block>{`
+  \\begin{aligned}
+  \\neg(p \\wedge q) &\\equiv \\neg p \\vee \\neg q \\\\
+  \\neg(p \\vee q) &\\equiv \\neg p \\wedge \\neg q
+  \\end{aligned}
+`}</Latex>
+
+**Contoh:**
+"**Tidak** benar bahwa (saya Kaya **DAN** Tampan)" $\equiv$ "Saya **Tidak** Kaya **ATAU** saya **Tidak** Tampan".
+
+## 9. Hukum Trivial
+Hubungan antara proposisi dengan negasinya sendiri.
+
+<Latex block>{`
+  \\begin{aligned}
+  p \\vee \\neg p &\\equiv \\mathbf{T} \\quad \\text{(Tautologi)} \\\\
+  p \\wedge \\neg p &\\equiv \\mathbf{F} \\quad \\text{(Kontradiksi)}
+  \\end{aligned}
+`}</Latex>
+
+**Penjelasan:**
+* "Hari ini hujan **atau** tidak hujan" $\to$ Selalu Benar (**T**).
+* "Hari ini hujan **dan** tidak hujan" $\to$ Mustahil/Salah (**F**).
+
+## 10. Hukum Absorpsi
+Hukum penyerapan, di mana variabel di luar tanda kurung "menyerap" ekspresi di dalamnya sehingga menjadi lebih sederhana.
+
+**Bentuk Standar:**
+Jika variabel di luar sama dengan variabel di dalam.
+<Latex block>{`
+  \\begin{aligned}
+  p \\vee (p \\wedge q) &\\equiv p \\\\
+  p \\wedge (p \\vee q) &\\equiv p
+  \\end{aligned}
+`}</Latex>
+
+**Bentuk dengan Negasi (Redundansi):**
+Jika variabel di dalam adalah negasi dari yang di luar, maka **negasinya hilang**.
+<Latex block>{`
+  \\begin{aligned}
+  p \\vee (\\neg p \\wedge q) &\\equiv p \\vee q \\\\
+  p \\wedge (\\neg p \\vee q) &\\equiv p \\wedge q
+  \\end{aligned}
+`}</Latex>
+
+## 11. Hukum Lain (Implikasi & Bikondisional)
+Ekuivalensi penting untuk mengubah bentuk implikasi ($\to$) dan bi-implikasi ($\leftrightarrow$) menjadi operasi dasar ($\wedge, \vee, \neg$).
+
+### Penyederhanaan Distributif Khusus
+Jika variabel sama dikali dengan (variabel lain atau negasinya), hasilnya adalah variabel itu sendiri.
+<Latex block>{`
+  (p \\wedge q) \\vee (p \\wedge \\neg q) \\equiv p
+`}</Latex>
+
+### Ekuivalensi Implikasi
+Mengubah "Jika... maka..." menjadi "Tidak... atau...".
+<Latex block>{`
+  \\begin{aligned}
+  p \\to q &\\equiv \\neg p \\vee q \\\\
+  p \\to q &\\equiv \\neg (p \\wedge \\neg q)
+  \\end{aligned}
+`}</Latex>
+
+### Ekuivalensi Bikondisional
+Bikondisional adalah gabungan dua implikasi.
+<Latex block>{`
+  \\begin{aligned}
+  (p \\leftrightarrow q) &\\equiv (p \\to q) \\wedge (q \\to p) \\\\
+  (p \\leftrightarrow q) &\\equiv (p \\wedge q) \\vee (\\neg p \\wedge \\neg q)
+  \\end{aligned}
+`}</Latex>
+
+<Callout type="info" emoji="💡">
+  **Tips:** Hukum-hukum di atas (terutama **Implikasi**, **De Morgan**, dan **Absorpsi**) adalah senjata utama dalam mengerjakan soal **Penyederhanaan Logika**.
+</Callout>

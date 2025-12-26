@@ -1,0 +1,135 @@
+---
+title: Perulangan (Looping)
+description: Memahami konsep perulangan menggunakan While dan For loop di Python.
+prodi: [teknik_informatika, sistem_informasi]
+---
+
+import { Callout } from "nextra/components";
+
+# 🔄 Perulangan (Looping)
+
+Bayangkan jika kamu dihukum guru untuk menulis kalimat "Saya tidak akan terlambat lagi" sebanyak 100 kali di papan tulis. Menulisnya satu per satu tentu melelahkan, bukan?
+
+Di pemrograman, kita menggunakan **Looping** atau **Perulangan** untuk melakukan tugas yang sama berulang kali secara otomatis. Python memiliki dua perulangan utama: **While** dan **For**.
+
+## 1. Perulangan While
+
+**While Loop** digunakan ketika kita ingin melakukan perulangan **SELAMA** suatu kondisi bernilai **Benar (True)**.  
+Ini cocok dipakai kalau kita **belum tahu pasti** berapa kali perulangan akan dijalankan.
+
+### Sintaks Dasar
+
+```python filename="while_dasar.py"
+nilai = 1
+
+# Perulangan akan berjalan selama nilai kurang dari 6
+while nilai < 6:
+    print("Angka:", nilai)
+    nilai += 1  # Penting! Agar loop tidak berjalan selamanya
+```
+
+<Callout type="warning" emoji="⚠️">
+  **Hati-hati Infinite Loop!**  
+  Jika kamu lupa menambahkan `nilai += 1`, maka kondisi `nilai < 6` tidak pernah berubah.  
+  Program akan terus berjalan tanpa berhenti.
+</Callout>
+
+### Studi Kasus: Konfirmasi User
+
+While loop sering dipakai untuk **menunggu input user**, misalnya menanyakan apakah program harus lanjut.
+
+```python filename="while_lanjut.py"
+import os
+
+lanjut = "y"
+
+while lanjut == "y":
+    print("Program sedang berjalan...")
+    lanjut = input("Apakah anda ingin lanjut? [y/n]: ")
+    
+print("Program berhenti.")
+```
+
+## 2. Perulangan For
+
+**For Loop** biasanya digunakan ketika kita **sudah tahu batas awal dan akhir perulangan**.  
+Loop ini sangat berguna untuk mengakses elemen dalam list atau membuat urutan angka.
+
+### Menggunakan Fungsi `range()`
+
+Fungsi `range(start, stop, step)` membantu membuat urutan angka secara otomatis:
+
+- **start**: angka mulai (default 0)  
+- **stop**: berhenti **sebelum** angka ini  
+- **step**: jarak lompatan (default 1)
+
+```python filename="for_range.py"
+# Mencetak angka 0 sampai 4
+print("--- Loop 1 ---")
+for i in range(5):
+    print(i)
+
+# Mencetak angka 1 sampai 10
+print("--- Loop 2 ---")
+for i in range(1, 11):
+    print(i)
+
+# Mencetak angka ganjil (step 2)
+print("--- Loop 3 ---")
+for i in range(1, 10, 2):
+    print(i)
+```
+
+## 3. Kontrol Perulangan (Jump Statement)
+
+Ada dua perintah yang bisa mengontrol jalannya loop:
+
+- **break** → menghentikan loop sepenuhnya  
+- **continue** → melewati proses di iterasi saat ini dan lanjut ke iterasi berikutnya
+
+### Break
+
+Digunakan untuk menghentikan perulangan lebih cepat.
+
+```python filename="break.py"
+# Mencari angka 3, lalu berhenti
+for i in range(1, 10):
+    if i == 3:
+        print("Angka 3 ditemukan! Berhenti.")
+        break
+    print("Cek angka:", i)
+```
+
+### Continue
+
+Digunakan untuk melewati suatu kondisi tertentu.
+
+```python filename="continue.py"
+# Hanya mencetak angka ganjil (melewati angka genap)
+for i in range(1, 6):
+    if i % 2 == 0:
+        continue  # Skip angka genap
+    print("Angka ganjil:", i)
+```
+
+## 4. Nested Loop (Loop Bersarang)
+
+Kita juga bisa menaruh loop di dalam loop.  
+Ini sering dipakai untuk membuat pola, tabel, atau memproses data berbentuk baris–kolom.
+
+### Studi Kasus: Pola Segitiga Angka
+
+```text
+1
+2 2
+3 3 3
+```
+
+```python filename="pola_segitiga.py"
+# Outer loop untuk baris (1 sampai 5)
+for i in range(1, 6):
+    # Inner loop untuk kolom
+    for j in range(i):
+        print(i, end=" ")
+    print()  # Pindah baris setelah satu baris selesai
+```

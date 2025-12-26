@@ -16,30 +16,65 @@ export const LastUpdated: FC<{
   const dateStr = useMemo<string | null>(() => {
     if (!pathname) return null;
 
-    // 1. Bersihkan path dari prefix '/docs', dan slash di awal/akhir
-    const slug = pathname
+    // 1. Hapus prefix locale kalau ada (mis. /id, /en-US)
+    let path = pathname;
+    const maybeLocale = path.split("/")[1];
+    if (maybeLocale && /^[a-z]{2}(?:-[a-z]{2})?$/i.test(maybeLocale)) {
+      path = path.replace(`/${maybeLocale}`, "");
+    }
+
+    // 2. Bersihkan path dari prefix '/docs', dan slash di awal/akhir
+    let slug = path
       .replace(/^\/docs/, "")
       .replace(/^\//, "")
       .replace(/\/$/, "");
+    slug = slug.replace(/\/+/g, "/"); // normalisasi multiple slashes
 
-    // 2. Try App Router patterns first (most common case)
-    const appPrefix = `app/docs/${slug ? slug + "/" : ""}page`;
-    const found =
-      gitMeta[`${appPrefix}.mdx`] ||
-      gitMeta[`${appPrefix}.md`] ||
-      (slug && (gitMeta[`app/docs/${slug}.mdx`] || gitMeta[`app/docs/${slug}.md`]));
+    // 3. Helper untuk mencoba key dengan ekstensi .mdx/.md
+    const tryKey = (key: string) =>
+      gitMeta[`${key}.mdx`] || gitMeta[`${key}.md`] || null;
 
-    if (found) return found;
+    // 4. Periksa pola App Router secara lebih generik:
+    //    - app/<slug>/page(.mdx|.md)
+    //    - app/<slug>(.mdx|.md)
+    //    - tetap periksa app/docs/... untuk kompatibilitas
+    const candidates = [
+      `app/${slug ? slug + "/" : ""}page`,
+      `app/${slug}`,
+      `app/docs/${slug ? slug + "/" : ""}page`,
+      `app/docs/${slug}`,
+    ];
 
-    // 3. Fallback to legacy content folder patterns
+    for (const c of candidates) {
+      const found = tryKey(c);
+      if (found) return found;
+    }
+
+    // 5. Jika slug berakhiran 'index' atau 'page', coba tanpa segmen tersebut
+    const slugNoIndex = slug.replace(/\/(?:index|page)$/, "");
+    if (slugNoIndex !== slug) {
+      for (const c of [
+        `app/${slugNoIndex ? slugNoIndex + "/" : ""}page`,
+        `app/${slugNoIndex}`,
+      ]) {
+        const found = tryKey(c);
+        if (found) return found;
+      }
+    }
+
+    // 6. Fallback ke pola folder legacy 'content/...'
     const legacySlug = slug === "" ? "index" : slug;
-    return (
-      gitMeta[`content/${legacySlug}.mdx`] ||
-      gitMeta[`content/${legacySlug}.md`] ||
-      gitMeta[`content/${legacySlug}/index.mdx`] ||
-      gitMeta[`content/${legacySlug}/index.md`] ||
-      null
-    );
+    const legacyCandidates = [
+      `content/${legacySlug}`,
+      `content/${legacySlug}/index`,
+    ];
+
+    for (const c of legacyCandidates) {
+      const found = tryKey(c);
+      if (found) return found;
+    }
+
+    return null;
   }, [pathname]);
 
   if (!dateStr) {

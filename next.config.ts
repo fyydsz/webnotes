@@ -3,43 +3,6 @@ import nextra from "nextra";
 import lightTheme from './public/syntax/light.json' assert { type: 'json' } // atau baca file manual
 import darkTheme from './public/syntax/dark.json' assert { type: 'json' }
 
-// Daftar mata kuliah yang tersedia di folder mata_kuliah
-const courses = [
-  'bahasa_indonesia',
-  'dasar_pemrograman_python',
-  'kalkulus',
-  'logika_matematika',
-];
-
-// Daftar program studi
-const programStudi = [
-  'sistem_informasi',
-  'teknik_informatika',
-  'general'
-];
-
-// Generate rewrites untuk setiap kombinasi prodi dan course
-const generateCourseRewrites = () => {
-  const rewrites: Array<{ source: string; destination: string }> = [];
-
-  for (const prodi of programStudi) {
-    for (const course of courses) {
-      // Rewrite untuk halaman index course
-      rewrites.push({
-        source: `/docs/program_studi/${prodi}/${course}`,
-        destination: `/docs/mata_kuliah/${course}`,
-      });
-      // Rewrite untuk subhalaman course
-      rewrites.push({
-        source: `/docs/program_studi/${prodi}/${course}/:path*`,
-        destination: `/docs/mata_kuliah/${course}/:path*`,
-      });
-    }
-  }
-
-  return rewrites;
-};
-
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
@@ -49,11 +12,6 @@ const nextConfig: NextConfig = {
     }
   },
   transpilePackages: ['shiki'],
-  async rewrites() {
-    return {
-      beforeFiles: generateCourseRewrites(),
-    };
-  },
 };
 
 const withNextra = nextra({

@@ -1,0 +1,135 @@
+---
+title:  Pengenalan Sistem Bilangan
+description: Memahami bilangan real, imajiner, dan kompleks sebagai fondasi Kalkulus 1
+prodi: [teknik_informatika, sistem_informasi]
+---
+
+import { Latex } from "@/components/latex"
+import { Callout } from 'nextra/components'
+
+# 🧮 Pengenalan Sistem Bilangan
+
+Sebelum mempelajari Limit dan Turunan, kita harus memahami bahasa dasar matematika yaitu **Sistem Bilangan**.  Pemahaman yang kuat tentang jenis-jenis bilangan akan membantu Anda menguasai konsep kalkulus dengan lebih mudah.
+
+---
+
+## 1. Jenis-Jenis Bilangan
+
+### 1.1 Hierarki Sistem Bilangan
+
+| Simbol | Nama | Contoh |
+|--------|------|--------|
+| <Latex>{`\\mathbb{N}`}</Latex> | Bilangan Asli | 1, 2, 3, 4, ...  |
+| <Latex>{`\\mathbb{Z}`}</Latex> | Bilangan Bulat | ..., -2, -1, 0, 1, 2, ... |
+| <Latex>{`\\mathbb{Q}`}</Latex> | Bilangan Rasional | 1/2, 3/4, -2/3, ...  |
+| <Latex>{`\\mathbb{R}`}</Latex> | Bilangan Real | π, √2, e, 3.14, ... |
+| <Latex>{`\\mathbb{C}`}</Latex> | Bilangan Kompleks | 3+2i, 1-i, 5i, ... |
+
+---
+
+## 2. Bilangan Real (<Latex>{`\\mathbb{R}`}</Latex>)
+
+### 2.1 Definisi
+
+**Bilangan real** adalah bilangan yang dapat digambarkan di sepanjang garis bilangan tak hingga. Bilangan ini mencakup semua bilangan rasional dan irasional.
+
+> **Definisi Formal:** Bilangan yang ada di garis bilangan, termasuk bilangan bulat, pecahan, dan desimal (baik berakhir maupun tak berakhir).
+
+### 2.2 Contoh Bilangan Real
+
+<Latex block>{`
+  2, \\quad 4, \\quad \\sqrt{2}, \\quad \\sqrt{\\frac{14}{3}}, \\quad -5, \\quad \\pi, \\quad e
+`}</Latex>
+
+### 2.3 Karakteristik
+
+- Dapat direpresentasikan pada garis bilangan
+- Memiliki urutan (dapat dibandingkan:  lebih besar, lebih kecil, atau sama)
+- Termasuk bilangan rasional (seperti 1/2, 3) dan irasional (seperti √2, π)
+
+---
+
+## 3. Bilangan Imajiner (<Latex>{`i`}</Latex>)
+
+### 3.1 Definisi
+
+Bilangan imajiner muncul ketika kita mencoba mencari akar kuadrat dari bilangan negatif. Satuan dasar imajiner dilambangkan dengan <Latex>{`i`}</Latex>.
+
+<Callout type="info" emoji="💡">
+  **Definisi Penting! **
+  <Latex block>{`\\sqrt{-1} = i \\quad \\text{maka} \\quad i^2 = -1`}</Latex>
+</Callout>
+
+### 3.2 Mengapa Bilangan Imajiner Diperlukan? 
+
+Dalam bilangan real, kita tidak dapat menghitung <Latex>{`\\sqrt{-1}`}</Latex> karena tidak ada bilangan real yang jika dikuadratkan menghasilkan bilangan negatif. Oleh karena itu, matematikawan menciptakan satuan imajiner <Latex>{`i`}</Latex> untuk memperluas sistem bilangan. 
+
+### 3.3 Contoh Perhitungan
+
+**Contoh 1:**
+<Latex block>{`\\sqrt{-4} = \\sqrt{4 \\cdot (-1)} = \\sqrt{4} \\cdot \\sqrt{-1} = 2i`}</Latex>
+
+**Contoh 2:**
+<Latex block>{`\\sqrt{-9} = \\sqrt{9 \\cdot (-1)} = \\sqrt{9} \\cdot \\sqrt{-1} = 3i`}</Latex>
+
+**Contoh 3:**
+<Latex block>{`\\sqrt{-25} = \\sqrt{25 \\cdot (-1)} = 5i`}</Latex>
+
+### 3.4 Pangkat dari <Latex>{`i`}</Latex>
+
+Perhatikan pola berikut yang sangat berguna dalam perhitungan: 
+
+| Pangkat | Nilai |
+|---------|-------|
+| <Latex>{`i^1`}</Latex> | <Latex>{`i`}</Latex> |
+| <Latex>{`i^2`}</Latex> | <Latex>{`-1`}</Latex> |
+| <Latex>{`i^3`}</Latex> | <Latex>{`-i`}</Latex> |
+| <Latex>{`i^4`}</Latex> | <Latex>{`1`}</Latex> |
+| <Latex>{`i^5`}</Latex> | <Latex>{`i`}</Latex> (pola berulang) |
+
+<Callout type="info" emoji="🔄">
+  **Pola Berulang! ** Pangkat <Latex>{`i`}</Latex> memiliki siklus 4. Untuk menghitung <Latex>{`i^n`}</Latex>, cari sisa pembagian <Latex>{`n \\div 4`}</Latex>. 
+</Callout>
+
+---
+
+## 4. Bilangan Kompleks (<Latex>{`\\mathbb{C}`}</Latex>)
+
+### 4.1 Definisi
+
+Bilangan kompleks adalah gabungan dari bilangan real dan bilangan imajiner, ditulis dalam bentuk: 
+
+<Latex block>{`z = a + bi`}</Latex>
+
+Dimana: 
+- <Latex>{`a`}</Latex> = bagian real (Re)
+- <Latex>{`b`}</Latex> = bagian imajiner (Im)
+- <Latex>{`i`}</Latex> = satuan imajiner
+
+### 4.2 Contoh Identifikasi
+
+| Bilangan Kompleks | Bagian Real | Bagian Imajiner |
+|-------------------|-------------|-----------------|
+| <Latex>{`3 + 2i`}</Latex> | 3 | 2 |
+| <Latex>{`-5 + 7i`}</Latex> | -5 | 7 |
+| <Latex>{`4 - 3i`}</Latex> | 4 | -3 |
+| <Latex>{`6i`}</Latex> | 0 | 6 |
+| <Latex>{`-2`}</Latex> | -2 | 0 |
+
+---
+
+## 5. Ringkasan
+
+| Jenis Bilangan | Simbol | Karakteristik | Contoh |
+|----------------|--------|---------------|--------|
+| Real | <Latex>{`\\mathbb{R}`}</Latex> | Ada di garis bilangan | <Latex>{`3, \\sqrt{2}, \\pi`}</Latex> |
+| Imajiner | - | Kelipatan dari <Latex>{`i`}</Latex> | <Latex>{`2i, -5i`}</Latex> |
+| Kompleks | <Latex>{`\\mathbb{C}`}</Latex> | Gabungan real + imajiner | <Latex>{`3+2i, 4-i`}</Latex> |
+
+---
+
+## 💡 Catatan Penting
+
+> **Hubungan antar bilangan:** Semua bilangan real adalah bilangan kompleks dengan bagian imajiner = 0. Contoh: <Latex>{`5 = 5 + 0i`}</Latex>.
+
+> **Langkah selanjutnya:** Setelah memahami konsep dasar ini, Anda siap mempelajari operasi pada bilangan kompleks di bab berikutnya!

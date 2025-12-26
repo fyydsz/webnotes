@@ -1,0 +1,59 @@
+---
+title: Pembuktian Logika
+description: "Metode-metode pembuktian logika seperti tabel kebenaran, penyederhanaan, dan aturan inferensi."
+prodi: [teknik_informatika, sistem_informasi]
+---
+
+import { Callout } from 'nextra/components'
+import { Latex } from "@/components/latex"
+
+# 🔨 Pembuktian Logika
+Pembuktian logika dilakukan untuk memvalidasi nilai kebenaran dari suatu proposisi majemuk atau kesahihan suatu argumen.
+
+Terdapat tiga metode utama yang digunakan dalam Pembuktian Logika:
+1.  **Tabel Kebenaran** (*Truth Table*)
+2.  **Penyederhanaan** (*Simplification*)
+3.  **Aturan Inferensi** (*Inference Rules*)
+
+## 1. Tabel Kebenaran (Truth Table)
+Metode ini adalah teknik pembuktian yang paling dasar dan akurat dengan mencatat semua kemungkinan nilai kebenaran dari proposisi atomik dan menghitung nilai kebenaran proposisi majemuk secara keseluruhan.
+
+## 2. Penyederhanaan (Simplification)
+Penyederhanaan adalah metode pembuktian dengan menggunakan **Hukum-Hukum Logika** untuk memanipulasi ekspresi logika hingga mencapai **bentuk yang paling sederhana** yang tidak mungkin lagi dimanipulasi.
+
+### Tahapan Penyederhanaan
+Penyederhanaan ekspresi logika dilakukan melalui langkah-langkah berikut:
+1.  **Tentukan Perangkai Utama:** Cari perangkai logika yang menjadi pemisah utama pada ekspresi (perangkai yang menjadi "jurang pemisah" pada ekspresi logika).
+2.  **Sederhanakan Tiap Sisi:** Sederhanakan masing-masing sisi dari perangkai utama menjadi bentuk yang lebih sederhana.
+3.  **Sederhanakan Keseluruhan:** Sederhanakan kembali bentuk sederhana dari masing-masing sisi menjadi bentuk yang paling sederhana.
+
+### Syarat Penyederhanaan
+Penyederhanaan dimungkinkan ketika ditemukan kondisi-kondisi berikut dalam ekspresi:
+* **Variabel Identik:** Ada variabel yang sama (misalnya: <Latex>{`(A \\vee A)`}</Latex> atau <Latex>{`(A \\vee \\neg A)`}</Latex>).
+* **Pasangan T/F:** Variabel berpasangan dengan nilai kebenaran **True** (<Latex>{`T`}</Latex> atau <Latex>{`1`}</Latex>) atau **False** (<Latex>{`F`}</Latex> atau <Latex>{`0`}</Latex>).
+* **Perangkai Tingkat Tinggi:** Terdapat perangkai tingkat tinggi (<Latex>{`\\to`}</Latex> / Implikasi dan <Latex>{`\\leftrightarrow`}</Latex> / Bikondisional).
+
+<Callout type="info" emoji="💡">
+  Kamu dapat merujuk ke [Hukum-Hukum Logika](hukum_logika) untuk mengetahui aturan-aturan yang dapat digunakan dalam penyederhanaan ekspresi logika.
+</Callout>
+
+<Callout type="warning" emoji="⚠️">
+  **Catatan Negasi:**
+  * Negasi yang berlaku untuk **satu variabel** (<Latex>{`\\neg A`}</Latex>) dianggap sebagai variabel.
+  * Negasi yang berlaku untuk **lebih dari satu variabel** (<Latex>{`\\neg (A \\wedge B)`}</Latex>) dianggap sebagai perangkai (sehingga harus disederhanakan menggunakan Hukum De Morgan).
+</Callout>
+
+### Contoh Penyederhanaan
+
+**Contoh 1:** Sederhanakan <Latex>{`(A \\vee 0) \\wedge (A \\vee \\neg A)`}</Latex>!
+* Sisi Kiri: <Latex>{`A \\vee 0 \\equiv A`}</Latex> ([Hukum Identitas](hukum_logika#1-hukum-identitas))
+* Sisi Kanan: <Latex>{`A \\vee \\neg A \\equiv 1`}</Latex> ([Hukum Trivial](hukum_logika#9-hukum-trivial))
+* Ekspresi Sederhana: <Latex>{`A \\wedge 1`}</Latex>
+* Hasil Akhir: <Latex>{`A \\wedge 1 \\equiv A`}</Latex> ([Hukum Identitas](hukum_logika#1-hukum-identitas))
+
+**Contoh 2:** Sederhanakan <Latex>{`((A \\vee B) \\wedge \\neg A) \\wedge \\neg B`}</Latex>!
+* Ekspresi ini terbukti sebagai **Kontradiksi**.
+* Bentuk paling sederhananya adalah <Latex>{`0`}</Latex> (False).
+
+## 3. Aturan Inferensi (Inference Rules)
+Metode ini menggunakan serangkaian **aturan dasar logika** yang terbukti valid (seperti *Modus Ponens* atau *Modus Tollens*) untuk menyimpulkan kesimpulan yang benar dari premis-premis yang dianggap benar.

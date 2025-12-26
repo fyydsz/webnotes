@@ -4,62 +4,34 @@ import path from 'path'
 
 const BASE_URL = 'https://bukukampus.xyz'
 
-// Daftar program studi
-const programStudi = ['sistem_informasi', 'teknik_informatika', 'general']
-
-// Function to read _meta.js and get course mappings for a prodi
-function getProdiCourses(prodi: string): string[] {
-  const metaPath = path.join(
-    process.cwd(),
-    'app',
-    'docs',
-    'program_studi',
-    prodi,
-    '_meta.js'
-  )
-
-  if (!fs.existsSync(metaPath)) {
-    return []
-  }
-
-  try {
-    // Read the _meta.js file content
-    const metaContent = fs.readFileSync(metaPath, 'utf-8')
-
-    // Extract course keys from the routes object
-    const courseMatches = metaContent.matchAll(/^\s*([a-z_]+):\s*{/gm)
-    const courses: string[] = []
-
-    for (const match of courseMatches) {
-      if (match[1] && match[1] !== 'routes') {
-        courses.push(match[1])
-      }
-    }
-
-    return courses
-  } catch (error) {
-    console.error(`Error reading meta file for ${prodi}:`, error)
-    return []
-  }
-}
-
-function getMdxFiles(
+function getPageFiles(
   dir: string,
   fileList: Array<{ relativePath: string; lastModified: Date }> = [],
   rootDir: string = dir
 ): Array<{ relativePath: string; lastModified: Date }> {
+  // Check if directory exists before trying to read it
   if (!fs.existsSync(dir)) {
     return fileList
   }
 
+  // Use withFileTypes to get file type info without additional stat calls
   const entries = fs.readdirSync(dir, { withFileTypes: true })
 
   for (const entry of entries) {
     const filePath = path.join(dir, entry.name)
 
     if (entry.isDirectory()) {
-      getMdxFiles(filePath, fileList, rootDir)
-    } else if (entry.name.endsWith('.mdx') || entry.name.endsWith('.md')) {
+      getPageFiles(filePath, fileList, rootDir)
+      continue
+    }
+
+    const name = entry.name.toLowerCase()
+    // Consider MD/MDX files and any files named `page.*` or `index.*` that represent App Router pages
+    const isPageLike = /^(page|index)\.(mdx?|tsx?|jsx?|ts|js)$/.test(name)
+    const isMdx = name.endsWith('.mdx') || name.endsWith('.md')
+
+    if (isPageLike || isMdx) {
+      // Only call stat for files we actually need mtime from
       const stat = fs.statSync(filePath)
       const relativePath = path.relative(rootDir, filePath)
       fileList.push({
@@ -73,111 +45,86 @@ function getMdxFiles(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const contentDir = path.join(process.cwd(), 'app', 'docs', 'mata_kuliah')
-  const allMdxFiles = getMdxFiles(contentDir)
+  // Scan the entire `app` directory so pages in any subfolder are discovered
+  const contentDir = path.join(process.cwd(), 'app')
 
-  const routes: MetadataRoute.Sitemap = []
+  const allPageFiles = getPageFiles(contentDir)
 
-  // For each prodi, generate URLs for their courses
-  for (const prodi of programStudi) {
-    const prodiCourses = getProdiCourses(prodi)
+  // Build a map keyed by URL to deduplicate entries and prefer the most recently modified file
+  type RouteEntry = {
+    url: string
+    lastModified: Date
+    changeFrequency: 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
+    priority: number
+  }
+  const routesMap = new Map<string, RouteEntry>()
 
-    for (const course of prodiCourses) {
-      // Filter files that belong to this course
-      const courseFiles = allMdxFiles.filter((file) => {
-        const normalizedPath = file.relativePath.replace(/\\/g, '/')
-        return normalizedPath.startsWith(`${course}/`)
-      })
+  for (const fileEntry of allPageFiles) {
+    const file = fileEntry.relativePath
+    const lastModified = fileEntry.lastModified ?? new Date()
 
-      for (const fileEntry of courseFiles) {
-        const file = fileEntry.relativePath.replace(/\\/g, '/')
-        const lastModified = fileEntry.lastModified ?? new Date()
+    // Normalize Windows paths and strip known page/index filenames & extensions
+    let slug = file
+      .replace(/\\/g, '/')
+      .replace(/\.(mdx?|tsx?|jsx?|ts|js)$/, '')
+      .replace(/^\/+|\/+$/g, '')
 
-        // Remove course prefix and file extension
-        const slug = file
-          .replace(new RegExp(`^${course}/`), '')
-          .replace(/\.mdx?$/, '')
-          .replace(/(^|\/)(index|page)$/, '')
+    // Remove any route group folders like `(group)` used by Next.js App Router
+    slug = slug.replace(/(^|\/)\([^/]+\)/g, '')
 
-        // Generate URL with program_studi format
-        if (slug === '') {
-          // Course index page
-          routes.push({
-            url: `${BASE_URL}/docs/program_studi/${prodi}/${course}`,
-            lastModified,
-            changeFrequency: 'weekly' as const,
-            priority: 0.9,
-          })
-        } else {
-          // Course material pages
-          routes.push({
-            url: `${BASE_URL}/docs/program_studi/${prodi}/${course}/${slug}`,
-            lastModified,
-            changeFrequency: 'monthly' as const,
-            priority: 0.8,
-          })
-        }
-      }
+    // Re-normalize slashes in case group removal left extra separators
+    slug = slug.replace(/^\/+|\/+$/g, '')
+
+    // Remove trailing 'index' or 'page' segment
+    slug = slug.replace(/(^|\/)(index|page)$/, '')
+
+    // Ensure no leading/trailing slashes after removing 'page' or 'index'
+    slug = slug.replace(/^\/+|\/+$/g, '')
+
+    // Skip dynamic routes (segments like [id])
+    if (slug.includes('[') || slug.includes(']')) {
+      continue
+    }
+
+    const url = slug === '' ? BASE_URL : `${BASE_URL}/${slug}`
+
+    const route: RouteEntry = {
+      url,
+      lastModified,
+      changeFrequency: url === BASE_URL ? 'yearly' : 'monthly',
+      priority: url === BASE_URL ? 1 : 0.8,
+    }
+
+    const existing = routesMap.get(url)
+    if (!existing || lastModified.getTime() > existing.lastModified.getTime()) {
+      routesMap.set(url, route)
     }
   }
 
-  // Add other static docs pages
-  const otherDocsDir = path.join(process.cwd(), 'app', 'docs')
-  const otherDirs = ['kontribusi', 'tentang', 'program_studi']
+  const routes = Array.from(routesMap.values())
 
-  for (const dir of otherDirs) {
-    const dirPath = path.join(otherDocsDir, dir)
-    if (fs.existsSync(dirPath)) {
-      const files = getMdxFiles(dirPath)
-
-      for (const fileEntry of files) {
-        const file = fileEntry.relativePath.replace(/\\/g, '/')
-        const lastModified = fileEntry.lastModified ?? new Date()
-
-        const slug = file
-          .replace(/\.mdx?$/, '')
-          .replace(/(^|\/)(index|page)$/, '')
-
-        if (slug === '') {
-          routes.push({
-            url: `${BASE_URL}/docs/${dir}`,
-            lastModified,
-            changeFrequency: 'weekly' as const,
-            priority: 0.9,
-          })
-        } else {
-          routes.push({
-            url: `${BASE_URL}/docs/${dir}/${slug}`,
-            lastModified,
-            changeFrequency: 'monthly' as const,
-            priority: 0.8,
-          })
-        }
-      }
-    }
-  }
-
-  // Add docs root page
-  const docsPagePath = path.join(otherDocsDir, 'page.mdx')
-  routes.push({
-    url: `${BASE_URL}/docs`,
-    lastModified: fs.existsSync(docsPagePath)
-      ? fs.statSync(docsPagePath).mtime
-      : new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 1,
-  })
-
-  // Add homepage
+  // Keep the existing layout-based static route for the site root
   const layoutPath = path.join(process.cwd(), 'app', 'layout.tsx')
-  routes.unshift({
-    url: BASE_URL,
-    lastModified: fs.existsSync(layoutPath)
-      ? fs.statSync(layoutPath).mtime
-      : new Date(),
-    changeFrequency: 'yearly' as const,
-    priority: 1,
-  })
+  const staticRoutes: RouteEntry[] = [
+    {
+      url: BASE_URL,
+      lastModified: fs.existsSync(layoutPath) ? fs.statSync(layoutPath).mtime : new Date(),
+      changeFrequency: 'yearly',
+      priority: 1,
+    },
+  ]
 
-  return routes
+  // Final dedupe to avoid collisions between staticRoutes and discovered routes
+  const merged = [...staticRoutes, ...routes]
+  const deduped = Array.from(
+    merged.reduce((map, r) => {
+      const prev = map.get(r.url)
+      if (!prev || r.lastModified.getTime() > prev.lastModified.getTime()) {
+        map.set(r.url, r)
+      }
+      return map
+    }, new Map<string, RouteEntry>()).values()
+  )
+
+  return deduped
 }

@@ -8,7 +8,7 @@ const rootDir = process.cwd();
 const metaFile = path.join(rootDir, "git-meta.json");
 
 // DEFINISI FOLDER KONTEN
-const contentDirs = ["app/docs", "content"];
+const contentDirs = ["app/docs", "app/mata_kuliah"];
 
 // Daftar program studi
 const programStudi = ["sistem_informasi", "teknik_informatika", "general"];
@@ -122,8 +122,16 @@ function getLastCommitDates(files) {
       }
     }
 
+    // For files not found in git log (e.g., newly added files), set a default date
+    const defaultDate = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+    for (const file of fileSet) {
+      if (!physicalFileDates[file]) {
+        physicalFileDates[file] = defaultDate;
+      }
+    }
+
     // Now map physical paths to virtual paths (with rewrites)
-    const mataKuliahDir = "app/docs/mata_kuliah";
+    const mataKuliahDir = "app/mata_kuliah";
 
     for (const [physicalPath, date] of Object.entries(physicalFileDates)) {
       // Check if this is a mata_kuliah file
@@ -146,6 +154,9 @@ function getLastCommitDates(files) {
             meta[virtualPath] = date;
           }
         }
+
+        // Also include the physical path for mata_kuliah files
+        meta[physicalPath] = date;
       } else {
         // For non-mata_kuliah files, keep the original path
         meta[physicalPath] = date;

@@ -11,9 +11,17 @@ const Card: FC<{
   /** CSS class name. */
   className?: string;
 }> = ({ children, title, icon, arrow, href, className, ...props }) => {
+  // Server-rendered Card links. We add a boolean data attribute so the client-side
+  // anchor patcher in `nextra-layout-wrapper.tsx` can append `?prodi=...` when needed.
+  // We intentionally do NOT read `prodi` here server-side so this component stays
+  // a plain server component (avoids the MDX `Cards.Card` runtime error).
+  // The client runtime will patch anchors that have `data-preserve-prodi` when a
+  // `prodi` query param is active on the current page.
+
   return (
     <NextLink
       href={href}
+      data-preserve-prodi="true"
       className={cn(
         "x:group",
         "x:focus-visible:nextra-focus nextra-card x:flex x:flex-col x:overflow-hidden x:h-full x:rounded-lg x:border x:border-gray-200",

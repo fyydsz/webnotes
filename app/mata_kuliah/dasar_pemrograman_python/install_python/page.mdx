@@ -1,0 +1,58 @@
+---
+title: Instalasi & Persiapan
+description: Panduan instalasi Python dan VS Code untuk memulai pemrograman.
+prodi: [teknik_informatika, sistem_informasi]
+---
+
+import { Callout } from 'nextra/components'
+import { Steps } from 'nextra/components'
+
+# 🛠️ Persiapan
+
+Sebelum mulai *ngoding*, kita perlu menyiapkan "peralatan tempur" terlebih dahulu. Kita membutuhkan dua hal utama:
+1.  **Python Interpreter**: Mesin yang akan membaca dan menjalankan kode program kita.
+2.  **Visual Studio Code (VS Code)**: Tempat kita menulis kode (*Text Editor*) yang populer dan mudah digunakan.
+
+<Steps>
+
+### Install Python
+
+Langkah pertama adalah mengunduh bahasa Python itu sendiri.
+
+* Kunjungi situs resmi [python.org/downloads](https://www.python.org/downloads/).
+* Klik tombol **Download Python** (pilih versi terbaru yang stabil).
+* Buka file installer yang sudah didownload.
+* **⚠️ PENTING:** Jangan lupa centang opsi **"Add Python to PATH"** di bagian bawah jendela installer sebelum klik *Install Now*. Ini wajib agar perintah `python` bisa dikenali oleh komputer.
+
+### Cek Instalasi Python
+
+Setelah proses instalasi selesai, mari kita pastikan Python sudah terpasang dengan benar.
+
+* Buka **Command Prompt (CMD)** atau **Terminal** di komputermu.
+* Ketik perintah berikut lalu tekan **Enter**:
+    ```bash
+    python --version
+    ```
+* Jika muncul tulisan seperti `Python 3.12.x` (atau versi lain), berarti instalasi berhasil! 🎉
+
+### Install VS Code
+
+Selanjutnya kita butuh editor kode. VS Code adalah pilihan terbaik saat ini karena ringan, cepat, dan memiliki banyak fitur pembantu.
+
+* Download di [code.visualstudio.com](https://code.visualstudio.com/).
+* Install seperti biasa (Next > Next > Finish).
+
+### Setup Extension Python di VS Code
+
+Agar VS Code menjadi lebih pintar saat dipakai *ngoding* Python (bisa memberi saran kode, mendeteksi *error*, dll), kita perlu memasang *extension*.
+
+1.  Buka aplikasi **VS Code**.
+2.  Klik ikon **Extensions** di menu bar sebelah kiri (atau tekan `Ctrl+Shift+X`).
+3.  Ketik kata kunci **"Python"** di kolom pencarian.
+4.  Pilih extension buatan **Microsoft** (biasanya paling atas) dan klik tombol **Install**.
+
+<Callout type="info" emoji="✅">
+  **Selesai!** Komputer kamu sekarang sudah siap digunakan untuk belajar pemrograman Python.
+</Callout>
+
+</Steps>

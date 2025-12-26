@@ -1,0 +1,133 @@
+---
+title: Operator Logika
+description: Memahami jenis-jenis perangkai logika (Negasi, Konjungsi, Disjungsi, Implikasi, Biimplikasi, dan XOR).
+prodi: [teknik_informatika, sistem_informasi]
+---
+
+import { Callout } from 'nextra/components'
+import { Latex } from "@/components/latex"
+
+# 🔗 Operator Logika
+
+Dalam logika matematika, proposisi-proposisi tunggal dapat digabungkan menjadi proposisi majemuk menggunakan **Operator Logika** (atau disebut juga *perangkai logika* / *logical connectives*).
+
+Setiap operator memiliki simbol dan aturan nilai kebenaran yang unik. Berikut adalah pembahasan lengkapnya.
+
+## 1. Negasi / Ingkaran (Negation)
+
+Negasi adalah operasi yang membalikkan nilai kebenaran suatu proposisi.
+
+* **Simbol:** <Latex>{`\\neg`}</Latex> atau <Latex>{`\\sim`}</Latex>
+* **Kata kunci:** "Tidak", "Bukan", "Tidak benar bahwa"
+* **Prinsip:** Jika <Latex>{`p`}</Latex> benar, maka <Latex>{`\\neg p`}</Latex> salah, dan sebaliknya.
+
+| <Latex>{`p`}</Latex> | <Latex>{`\\neg p`}</Latex> |
+| :---: | :---: |
+| T | **F** |
+| F | **T** |
+
+---
+
+## 2. Konjungsi (Conjunction)
+
+Konjungsi menghubungkan dua pernyataan yang bernilai benar **hanya jika keduanya benar**.
+
+* **Simbol:** <Latex>{`\\wedge`}</Latex>
+* **Kata kunci:** "Dan", "Serta", "Tetapi", "Walaupun"
+* **Prinsip:** True hanya jika **semua** komponennya True.
+
+| <Latex>{`p`}</Latex> | <Latex>{`q`}</Latex> | <Latex>{`p \\wedge q`}</Latex> |
+| :---: | :---: | :---: |
+| T | T | **T** |
+| T | F | F |
+| F | T | F |
+| F | F | F |
+
+<Callout type="info" emoji="💡">
+  **Tips Ingat:** Konjungsi itu seperti "Bos yang kaku". Dia hanya mau bilang "YA" (True) kalau semua syaratnya terpenuhi (True). Kalau ada satu saja yang salah, dia tolak (False).
+</Callout>
+
+---
+
+## 3. Disjungsi (Disjunction)
+
+Disjungsi (inklusif) bernilai benar jika **salah satu atau kedua** pernyataan penyusunnya benar.
+
+* **Simbol:** <Latex>{`\\vee`}</Latex>
+* **Kata kunci:** "Atau"
+* **Prinsip:** False hanya jika **keduanya** False.
+
+| <Latex>{`p`}</Latex> | <Latex>{`q`}</Latex> | <Latex>{`p \\vee q`}</Latex> |
+| :---: | :---: | :---: |
+| T | T | **T** |
+| T | F | **T** |
+| F | T | **T** |
+| F | F | **F** |
+
+---
+
+## 4. Implikasi (Implication)
+
+Implikasi menunjukkan hubungan sebab-akibat (kausalitas) atau syarat.
+
+* **Simbol:** <Latex>{`\\to`}</Latex> atau <Latex>{`\\implies`}</Latex>
+* **Kata kunci:** "Jika ... maka ...", "... mengakibatkan ...", "... syarat cukup bagi ..."
+* **Prinsip:** Hanya bernilai **False** jika Sebabnya Benar (T) tapi Akibatnya Salah (F). Selebihnya True.
+
+| <Latex>{`p`}</Latex> (Sebab) | <Latex>{`q`}</Latex> (Akibat) | <Latex>{`p \\to q`}</Latex> |
+| :---: | :---: | :---: |
+| T | T | **T** |
+| T | F | **F** |
+| F | T | **T** |
+| F | F | **T** |
+
+<Callout type="warning" emoji="⚠️">
+  **Perhatian!** Jika sebabnya Salah (<Latex>{`F`}</Latex>), implikasi akan selalu bernilai **True**, tidak peduli apa akibatnya. Ini disebut *vacuously true*.
+</Callout>
+
+---
+
+## 5. Biimplikasi (Bi-implication)
+
+Biimplikasi adalah pernyataan bersyarat dua arah.
+
+* **Simbol:** <Latex>{`\\leftrightarrow`}</Latex> atau <Latex>{`\\iff`}</Latex>
+* **Kata kunci:** "... jika dan hanya jika ...", "bila dan hanya bila"
+* **Prinsip:** Bernilai **True** jika kedua pernyataan memiliki nilai kebenaran yang **sama** (keduanya T atau keduanya F).
+
+| <Latex>{`p`}</Latex> | <Latex>{`q`}</Latex> | <Latex>{`p \\leftrightarrow q`}</Latex> |
+| :---: | :---: | :---: |
+| T | T | **T** |
+| T | F | F |
+| F | T | F |
+| F | F | **T** |
+
+---
+
+## 6. Exclusive OR (XOR)
+
+XOR sering digunakan dalam teknik informatika dan gerbang logika.
+
+* **Simbol:** <Latex>{`\\oplus`}</Latex>
+* **Kata kunci:** "Salah satu, tapi tidak keduanya"
+* **Prinsip:** Bernilai **True** jika kedua pernyataan memiliki nilai kebenaran yang **berbeda**.
+
+| <Latex>{`p`}</Latex> | <Latex>{`q`}</Latex> | <Latex>{`p \\oplus q`}</Latex> |
+| :---: | :---: | :---: |
+| T | T | F |
+| T | F | **T** |
+| F | T | **T** |
+| F | F | F |
+
+---
+
+## Ringkasan Tabel Kebenaran
+
+Berikut adalah tabel gabungan untuk memudahkan menghafal:
+
+| p | q | <Latex>{`p \\wedge q`}</Latex> | <Latex>{`p \\vee q`}</Latex> | <Latex>{`p \\to q`}</Latex> | <Latex>{`p \\leftrightarrow q`}</Latex> |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| T | T | T | T | T | T |
+| T | F | F | T | **F** | F |
+| F | T | F | T | T | F |
+| F | F | F | F | T | T |

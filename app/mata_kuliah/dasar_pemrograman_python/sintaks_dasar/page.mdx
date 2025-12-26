@@ -1,0 +1,127 @@
+---
+title: Sintaks Dasar & Variabel
+description: Memahami variabel, tipe data, aturan penamaan, serta input dan output di Python.
+prodi: [teknik_informatika, sistem_informasi]
+---
+
+import { Callout } from "nextra/components";
+
+# 📝 Sintaks Dasar, Variabel & Tipe Data
+
+Sebelum membuat program yang rumit, kita harus memahami fondasinya terlebih dahulu. Ibarat belajar bahasa manusia, kita harus tahu dulu huruf dan katanya sebelum merangkai kalimat.
+
+## 1. Variabel (Wadah Penyimpanan)
+
+Apa itu variabel?  
+**Variabel** adalah sebuah **wadah penyimpanan data** pada program yang akan digunakan selama program itu berjalan.
+
+### Analogi Variabel
+Bayangkan variabel seperti sebuah **Kotak** atau **Dompet**.
+- Jika kita punya **Dompet** berisi uang 5000, lalu kita tambah 10.000, maka isinya berubah.
+- Variabel bertugas menyimpan "nilai" tersebut agar bisa dipanggil atau diubah kapan saja.
+
+Cara membuat variabel di Python sangat mudah: **nama_variabel = nilai**.
+
+```python filename="variabel.py"
+# Membuat variabel dengan berbagai tipe data
+nama = "Raffi"         # Teks (String)
+umur = 21              # Angka bulat (Integer)
+tinggi = 170.5         # Angka desimal (Float)
+is_pelajar = True      # Boolean (Benar/Salah)
+
+# Mencetak isi variabel (Output)
+print(nama)
+print(umur)
+```
+
+<Callout type="warning" emoji="⚠️">
+  **Perhatikan!** Python bersifat *Case Sensitive*.  
+  Artinya huruf besar dan kecil dibedakan. `namaLengkap` dan `namalengkap` dianggap dua variabel yang berbeda.
+</Callout>
+
+## 2. Aturan Penamaan Variabel
+
+Agar kode kita rapi dan tidak error, ada aturan "sopan santun" dalam memberi nama variabel:
+
+| Aturan | Contoh Benar ✅ | Contoh Salah ❌ |
+| :--- | :--- | :--- |
+| **Tidak boleh ada spasi** | `nama_lengkap`, `namaLengkap` | `nama lengkap` |
+| **Tidak boleh diawali angka** | `buku1`, `nilai_2` | `1buku`, `2nilai` |
+| **Tidak boleh simbol aneh** | `_jenisKelamin`, `total_bayar` | `~sender`, `!apa`, `%level` |
+| **Hindari kata kunci Python** | `data_class`, `my_if` | `class`, `if`, `for`, `print` |
+
+### Gaya Penulisan (Style)
+Meskipun Python fleksibel, ada dua gaya populer yang sering digunakan programmer:
+1. **camelCase**: Huruf awal kata kedua kapital (contoh: `namaLengkap`, `jenisKelamin`).
+2. **snake_case**: Pemisah menggunakan garis bawah (contoh: `nama_lengkap`, `jenis_kelamin`). *Ini yang paling sering dipakai di Python.*
+
+## 3. Tipe Data Dasar
+
+Data yang kita simpan di variabel memiliki jenis yang berbeda-beda. Berikut adalah tipe data utama:
+
+1. **String (`str`)**: Teks, wajib diapit tanda kutip (`"` atau `'`).
+2. **Integer (`int`)**: Bilangan bulat (contoh: `12`, `-5`).
+3. **Float (`float`)**: Bilangan desimal/koma (contoh: `3.14`, `10.5`).
+4. **Boolean (`bool`)**: Logika benar/salah (`True` atau `False`).
+
+```python filename="tipe_data.py"
+# String harus pakai kutip
+kampus = "Universitas Dinamika Bangsa" 
+
+# Angka tidak perlu kutip
+semester = 2
+ipk = 3.75
+
+# Boolean (Perhatikan huruf T dan F harus kapital)
+lulus = True 
+```
+
+## 4. Input dan Output
+
+Program komputer biasanya terdiri dari **Input** (masukan data), **Proses**, dan **Output** (tampilan hasil).
+
+### Output: `print()`
+Digunakan untuk menampilkan tulisan atau isi variabel ke layar console.
+
+```python filename="output.py"
+nama = "Agus"
+# Menggabungkan teks dan variabel dengan koma
+print("Halo,", nama) 
+print("Selamat Datang!")
+```
+
+### Input: `input()`
+Digunakan untuk membaca teks yang diketik pengguna melalui keyboard.
+
+```python filename="input_program.py"
+print("=== PROGRAM SAPA ===")
+
+# Meminta input dari user
+nama = input("Tuliskan nama kamu: ")
+
+# Menampilkan hasil
+print("Hi " + nama + " selamat datang!")
+```
+
+<Callout type="info" emoji="💡">
+  **Penting:** Fungsi `input()` secara default menganggap semua masukan sebagai **String (Teks)**. 
+  Jika kamu ingin menginput angka untuk dijumlahkan, kamu harus mengubahnya menjadi integer menggunakan `int()`.
+</Callout>
+
+### Studi Kasus: Penjumlahan Angka
+
+Berikut adalah contoh program sederhana untuk menjumlahkan dua angka dari input user:
+
+```python filename="kalkulator.py"
+print("=== PENJUMLAHAN ===")
+
+# Input dan konversi langsung ke Integer (Angka)
+nilai_1 = int(input("Masukkan nilai pertama: "))
+nilai_2 = int(input("Masukkan nilai kedua: "))
+
+# Proses
+hasil = nilai_1 + nilai_2
+
+# Output
+print("Hasil penjumlahan adalah:", hasil)
+```

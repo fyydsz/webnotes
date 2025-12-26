@@ -1,0 +1,219 @@
+---
+title:  Bilangan Kompleks
+description: Konsep dasar, notasi, operasi perkalian, pembagian, dan konjugat bilangan kompleks dalam kalkulus.
+prodi: [teknik_informatika, sistem_informasi]
+---
+
+import { Callout } from 'nextra/components'
+import { Latex } from "@/components/latex"
+
+# 🔢 Bilangan Kompleks (<Latex>{`\\mathbb{C}`}</Latex>)
+
+**Bilangan Kompleks** adalah perluasan dari sistem bilangan riil yang memungkinkan kita bekerja dengan akar kuadrat dari bilangan negatif. Bilangan ini merupakan gabungan antara unsur **Riil** dan **Imajiner**.
+
+---
+
+## 1. Definisi dan Notasi
+
+### 1.1 Bentuk Standar
+
+Bilangan kompleks biasanya dinotasikan dengan huruf <Latex>{`z`}</Latex> dan ditulis dalam bentuk standar: 
+
+<Latex block>{`z = a + bi`}</Latex>
+
+**Keterangan:**
+
+| Komponen | Penjelasan | Notasi |
+|----------|------------|--------|
+| <Latex>{`a`}</Latex> | Bagian Riil | <Latex>{`Re(z)`}</Latex> |
+| <Latex>{`b`}</Latex> | Bagian Imajiner | <Latex>{`Im(z)`}</Latex> |
+| <Latex>{`i`}</Latex> | Satuan imajiner | <Latex>{`i = \\sqrt{-1}`}</Latex> atau <Latex>{`i^2 = -1`}</Latex> |
+
+### 1.2 Contoh Identifikasi
+
+Berikut adalah contoh identifikasi bagian riil dan imajiner:
+
+| Bilangan Kompleks | Bagian Riil | Bagian Imajiner |
+|-------------------|-------------|-----------------|
+| <Latex>{`z_1 = 3 + 2i`}</Latex> | 3 | 2 |
+| <Latex>{`z_2 = 4 - 6i`}</Latex> | 4 | -6 |
+| <Latex>{`z_3 = -2 + 5i`}</Latex> | -2 | 5 |
+| <Latex>{`z_4 = 7i`}</Latex> | 0 | 7 |
+
+---
+
+## 2. Operasi Perkalian
+
+### 2.1 Perkalian Bilangan Imajiner
+
+Perkalian bilangan imajiner mengikuti aturan aljabar biasa dengan substitusi <Latex>{`i^2 = -1`}</Latex>.
+
+**Contoh:** Hitunglah hasil dari <Latex>{`2i \\cdot 3i`}</Latex>! 
+
+**Penyelesaian:**
+
+<Latex block>{`
+  \\begin{aligned}
+  2i \\cdot 3i &= (2 \\cdot 3) \\cdot (i \\cdot i) \\\\
+  &= 6 \\cdot i^2 \\\\
+  &= 6 \\cdot (-1) \\\\
+  &= -6
+  \\end{aligned}
+`}</Latex>
+
+<Callout type="info" emoji="ℹ️">
+  **Unik!** Hasil perkalian dua bilangan imajiner murni bisa menghasilkan bilangan riil. 
+</Callout>
+
+### 2.2 Perkalian Dua Bilangan Kompleks
+
+**Contoh:** Hitunglah <Latex>{`(2 + 3i)(4 - 5i)`}</Latex>!
+
+**Penyelesaian:**
+
+<Latex block>{`
+  \\begin{aligned}
+  (2 + 3i)(4 - 5i) &= 2(4) + 2(-5i) + 3i(4) + 3i(-5i) \\\\
+  &= 8 - 10i + 12i - 15i^2 \\\\
+  &= 8 + 2i - 15(-1) \\\\
+  &= 8 + 2i + 15 \\\\
+  &= 23 + 2i
+  \\end{aligned}
+`}</Latex>
+
+---
+
+## 3. Pembagian Bilangan Kompleks
+
+### 3.1 Masalah Pembagian
+
+Untuk melakukan pembagian pada bilangan kompleks, kita tidak bisa membaginya secara langsung seperti bilangan biasa. Kita harus menggunakan bantuan **Konjugat** (Sekawan) dari penyebutnya.
+
+### 3.2 Konjugat (<Latex>{`\\bar{z}`}</Latex>)
+
+**Definisi:** Konjugat dari sebuah bilangan kompleks <Latex>{`z = a + bi`}</Latex> adalah bilangan yang memiliki bagian imajiner dengan tanda yang berlawanan. 
+
+<Latex block>{`
+  \\text{Jika } z = a + bi \\quad \\longrightarrow \\quad \\bar{z} = a - bi
+`}</Latex>
+
+**Contoh Konjugat:**
+
+| Bilangan (<Latex>{`z`}</Latex>) | Konjugat (<Latex>{`\\bar{z}`}</Latex>) |
+|--------------------------------|--------------------------------------|
+| <Latex>{`2 + i`}</Latex> | <Latex>{`2 - i`}</Latex> |
+| <Latex>{`3 - 2i`}</Latex> | <Latex>{`3 + 2i`}</Latex> |
+| <Latex>{`-4 + 7i`}</Latex> | <Latex>{`-4 - 7i`}</Latex> |
+| <Latex>{`5i`}</Latex> | <Latex>{`-5i`}</Latex> |
+
+### 3.3 Rumus Pembagian
+
+Prinsipnya adalah mengalikan pembilang dan penyebut dengan **konjugat dari penyebut**. 
+
+<Latex block>{`
+  \\frac{z_1}{z_2} = \\frac{a + bi}{c + di} \\cdot \\frac{c - di}{c - di}
+`}</Latex>
+
+<Callout type="warning" emoji="⚠️">
+  **Ingat!** Identitas penting: 
+  <Latex block>{`(c + di)(c - di) = c^2 + d^2`}</Latex>
+  Hasil perkalian bilangan kompleks dengan konjugatnya selalu menghasilkan bilangan real! 
+</Callout>
+
+---
+
+## 4. Contoh Soal dan Pembahasan
+
+### Soal 1: Pembagian Standar
+
+Diketahui <Latex>{`z_1 = 5 + 4i`}</Latex> dan <Latex>{`z_2 = 3 - 2i`}</Latex>. Tentukan hasil pembagiannya!
+
+**Penyelesaian:**
+
+**Langkah 1:** Identifikasi konjugat penyebut → <Latex>{`\\bar{z_2} = 3 + 2i`}</Latex>
+
+**Langkah 2:** Kalikan pembilang dan penyebut dengan konjugat penyebut: 
+
+<Latex block>{`
+  \\begin{aligned}
+  \\frac{z_1}{z_2} &= \\frac{5+4i}{3-2i} \\cdot \\frac{3+2i}{3+2i} \\\\[10pt]
+  &= \\frac{(5+4i)(3+2i)}{(3-2i)(3+2i)} \\\\[10pt]
+  &= \\frac{15 + 10i + 12i + 8i^2}{3^2 + 2^2} \\\\[10pt]
+  &= \\frac{15 + 22i + 8(-1)}{9 + 4} \\\\[10pt]
+  &= \\frac{15 - 8 + 22i}{13} \\\\[10pt]
+  &= \\frac{7 + 22i}{13} \\\\[10pt]
+  &= \\frac{7}{13} + \\frac{22}{13}i
+  \\end{aligned}
+`}</Latex>
+
+---
+
+### Soal 2: Penyebut dengan Akar Negatif
+
+Diketahui <Latex>{`z_1 = 2 + i`}</Latex> dan <Latex>{`z_2 = 1 - \\sqrt{-4}`}</Latex>. Tentukan <Latex>{`\\frac{z_1}{z_2}`}</Latex>! 
+
+**Penyelesaian:**
+
+**Langkah 1:** Sederhanakan <Latex>{`z_2`}</Latex> terlebih dahulu: 
+
+<Latex block>{`
+  z_2 = 1 - \\sqrt{-4} = 1 - \\sqrt{4 \\cdot (-1)} = 1 - 2i
+`}</Latex>
+
+**Langkah 2:** Identifikasi konjugat penyebut → <Latex>{`\\bar{z_2} = 1 + 2i`}</Latex>
+
+**Langkah 3:** Lakukan pembagian: 
+
+<Latex block>{`
+  \\begin{aligned}
+  \\frac{z_1}{z_2} &= \\frac{2+i}{1-2i} \\cdot \\frac{1+2i}{1+2i} \\\\[10pt]
+  &= \\frac{(2+i)(1+2i)}{(1-2i)(1+2i)} \\\\[10pt]
+  &= \\frac{2 + 4i + i + 2i^2}{1 + 4} \\\\[10pt]
+  &= \\frac{2 + 5i + 2(-1)}{5} \\\\[10pt]
+  &= \\frac{2 - 2 + 5i}{5} \\\\[10pt]
+  &= \\frac{5i}{5} \\\\[10pt]
+  &= i
+  \\end{aligned}
+`}</Latex>
+
+---
+
+### Soal 3: Kasus Khusus (Penyebut Imajiner Murni)
+
+Tentukan hasil dari <Latex>{`\\frac{5}{i}`}</Latex>!
+
+**Penyelesaian:**
+
+Kita bisa menganggap penyebutnya sebagai <Latex>{`0 + i`}</Latex>, maka konjugatnya adalah <Latex>{`0 - i = -i`}</Latex>. 
+
+<Latex block>{`
+  \\begin{aligned}
+  \\frac{5}{i} &= \\frac{5}{i} \\cdot \\frac{-i}{-i} \\\\[10pt]
+  &= \\frac{-5i}{-i^2} \\\\[10pt]
+  &= \\frac{-5i}{-(-1)} \\\\[10pt]
+  &= \\frac{-5i}{1} \\\\[10pt]
+  &= -5i
+  \\end{aligned}
+`}</Latex>
+
+---
+
+## 5. Ringkasan
+
+### Rumus-Rumus Penting
+
+| Operasi | Rumus |
+|---------|-------|
+| Konjugat | <Latex>{`\\overline{a+bi} = a-bi`}</Latex> |
+| Perkalian dengan Konjugat | <Latex>{`(a+bi)(a-bi) = a^2 + b^2`}</Latex> |
+| Pembagian | <Latex>{`\\frac{a+bi}{c+di} = \\frac{(a+bi)(c-di)}{c^2+d^2}`}</Latex> |
+
+---
+
+## 💡 Tips Mengerjakan Soal
+
+> **Selalu sederhanakan terlebih dahulu!** Jika ada akar negatif seperti <Latex>{`\\sqrt{-4}`}</Latex>, ubah menjadi bentuk imajiner <Latex>{`2i`}</Latex>.
+
+> **Gunakan konjugat untuk pembagian!** Kalikan pembilang dan penyebut dengan konjugat penyebut untuk menghilangkan bilangan imajiner di penyebut.
+
+> **Ingat:  <Latex>{`i^2 = -1`}</Latex>!** Ini adalah kunci utama dalam menyederhanakan perhitungan bilangan kompleks.

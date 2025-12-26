@@ -47,7 +47,7 @@ const SnowfallWrapper: React.FC<SnowfallWrapperProps> = ({ children }) => {
             zIndex: 9999,
           }}
         >
-          <Snowfall snowflakeCount={75} />
+          <Snowfall snowflakeCount={50} />
         </div>
       )}
     </div>
